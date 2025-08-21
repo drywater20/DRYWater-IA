@@ -3,124 +3,51 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Drywater Art | Tienda de Arte Marino Digital</title>
-  <meta name="description" content="Colección exclusiva de arte marino generado por inteligencia artificial. Compra impresiones en lienzo, papel fotográfico o descargas digitales. Envíos a todo el mundo.">
-  <meta name="keywords" content="arte marino, arte digital, impresiones de arte, IA arte, arte oceánico, arte abstracto">
-  <meta name="author" content="Drywater Studio">
-  <!-- Open Graph para redes sociales -->
-  <meta property="og:title" content="Drywater Art - Arte Marino por IA">
-  <meta property="og:description" content="Colección de arte marino digital. Compra impresiones únicas generadas por inteligencia artificial.">
-  <meta property="og:image" content="https://drywater-ia.netlify.app/og-image.jpg">
-  <meta property="og:url" content="https://drywater-ia.netlify.app/">
-  <meta property="og:type" content="website">
-
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Open+Sans&display=swap" rel="stylesheet">
-  <!-- Snipcart para e-commerce -->
-  <script src="https://cdn.snipcart.com/themes/v3.3.0/default/snipcart.js"></script>
-  <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.3.0/default/snipcart.css" />
-  <link rel="stylesheet" href="style.css">
+  <title>Galería de Arte</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
-
 <body>
-  <!-- Botón del carrito flotante -->
-  <div class="snipcart-summary snipcart-checkout">
-    🛒 <span class="snipcart-total-price">Carrito (0)</span>
-  </div>
-
   <header>
-    <h1>Drywater Art</h1>
-    <p>Colección única de arte marino generado por inteligencia artificial</p>
+    <h1 id="titulo">Galería de Arte</h1>
+    <p id="descripcion">Disfruta de una colección única de arte marino.</p>
+    <button id="leer-texto">🔊 Escuchar</button>
   </header>
 
-  <!-- Selector de idioma -->
-  <div class="language-selector">
-    <label>Idioma: </label>
-    <select id="lang-select" onchange="changeLanguage()">
+  <div class="controls">
+    <label for="idioma-select">Idioma:</label>
+    <select id="idioma-select">
       <option value="es">Español</option>
       <option value="en">English</option>
       <option value="fr">Français</option>
       <option value="ja">日本語</option>
     </select>
-  </div>
 
-  <!-- Filtros -->
-  <div class="filters">
-    <label>Filtrar por estilo: </label>
-    <select id="style-filter" onchange="filterProducts()">
-      <option value="all">todos</option>
-      <option value="abstract">abstracto</option>
-      <option value="realist">realista</option>
-      <option value="minimal">minimal</option>
+    <label for="filtro-estilo" id="label-filtro">Filtrar por estilo:</label>
+    <select id="filtro-estilo">
+      <option value="todos" id="option-todos">todos</option>
     </select>
   </div>
 
-  <!-- Galería de productos -->
-  <main id="gallery">
-    <!-- Producto 1 -->
-    <div class="product-card" data-style="abstract">
-      <img src="https://drywater-ia.netlify.app/image1.jpg" alt="Arte abstracto de olas en azul profundo" />
-      <h3>Olas de Silencio</h3>
-      <p class="price">Desde $25.00</p>
-      <button class="snipcart-add-item"
-        data-item-id="1"
-        data-item-name="Olas de Silencio"
-        data-item-price="25.00"
-        data-item-image="https://drywater-ia.netlify.app/image1.jpg"
-        data-item-url="/"
-        data-item-description="Impresión en papel fotográfico o lienzo. Tamaño personalizable.">
-        Añadir al carrito
-      </button>
+  <main id="galeria"></main>
+
+  <div id="modal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <button class="nav prev"><</button>
+      <img id="modal-img" src="" alt="" />
+      <div class="modal-info">
+        <h2 id="modal-titulo"></h2>
+        <p id="modal-descripcion"></p>
+        <p><strong id="label-comentarios">Comentarios:</strong></p>
+        <textarea id="modal-comentarios" rows="4"></textarea>
+        <button id="guardar-comentarios" class="btn">Enviar</button>
+        <div class="fav-button">
+          <span id="btn-favorito" class="star">☆</span>
+        </div>
+      </div>
+      <button class="nav next">></button>
     </div>
-
-    <!-- Producto 2 -->
-    <div class="product-card" data-style="realist">
-      <img src="https://drywater-ia.netlify.app/image2.jpg" alt="Paisaje submarino realista con peces y luz" />
-      <h3>Abismo Luminoso</h3>
-      <p class="price">Desde $32.00</p>
-      <button class="snipcart-add-item"
-        data-item-id="2"
-        data-item-name="Abismo Luminoso"
-        data-item-price="32.00"
-        data-item-image="https://drywater-ia.netlify.app/image2.jpg"
-        data-item-url="/"
-        data-item-description="Impresión en lienzo con marco opcional. Alta resolución.">
-        Añadir al carrito
-      </button>
-    </div>
-
-    <!-- Producto 3 -->
-    <div class="product-card" data-style="minimal">
-      <img src="https://drywater-ia.netlify.app/image3.jpg" alt="Formas suaves de olas en blanco y azul" />
-      <h3>Flujo Minimal</h3>
-      <p class="price">Desde $20.00</p>
-      <button class="snipcart-add-item"
-        data-item-id="3"
-        data-item-name="Flujo Minimal"
-        data-item-price="20.00"
-        data-item-image="https://drywater-ia.netlify.app/image3.jpg"
-        data-item-url="/"
-        data-item-description="Diseño minimalista en papel mate. Ideal para interiores modernos.">
-        Añadir al carrito
-      </button>
-    </div>
-  </main>
-
-  <!-- Formulario de comentarios (opcional) -->
-  <section class="comments-section">
-    <h2>¿Tienes alguna sugerencia?</h2>
-    <textarea id="comment" placeholder="Escribe tu comentario aquí..."></textarea>
-    <button onclick="submitComment()">Enviar</button>
-  </section>
-
-  <!-- Footer -->
-  <footer>
-    <p>© 2025 Drywater Studio. Todos los derechos reservados.</p>
-    <p>Arte generado por IA • Envíos a todo el mundo</p>
-  </footer>
-
-  <!-- Snipcart store -->
-  <div hidden id="snipcart" data-api-key="Drywater_1969"></div>
+  </div>
 
   <script src="script.js"></script>
 </body>
