@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Galería de Arte</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1 id="titulo">Galería de Arte</h1>
+    <p id="descripcion">Disfruta de una colección única de arte marino.</p>
+    <button id="leer-texto">🔊 Escuchar</button>
+  </header>
+
+  <div class="controls">
+    <label for="idioma-select">Idioma:</label>
+    <select id="idioma-select">
+      <option value="es">Español</option>
+      <option value="en">English</option>
+      <option value="fr">Français</option>
+      <option value="ja">日本語</option>
+    </select>
+
+    <label for="filtro-estilo" id="label-filtro">Filtrar por estilo:</label>
+    <select id="filtro-estilo">
+      <option value="todos" id="option-todos">todos</option>
+    </select>
+  </div>
+
+  <main id="galeria"></main>
+
+  <div id="modal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <button class="nav prev"><</button>
+      <img id="modal-img" src="" alt="" />
+      <div class="modal-info">
+        <h2 id="modal-titulo"></h2>
+        <p id="modal-descripcion"></p>
+        <p><strong id="label-comentarios">Comentarios:</strong></p>
+        <textarea id="modal-comentarios" rows="4"></textarea>
+        <button id="guardar-comentarios" class="btn">Enviar</button>
+        <div class="fav-button">
+          <span id="btn-favorito" class="star">☆</span>
+        </div>
+      </div>
+      <button class="nav next">></button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
