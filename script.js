@@ -124,7 +124,6 @@ function changeLanguage() {
   if (document.getElementById('filter-label')) document.getElementById('filter-label').textContent = t.filterLabel;
   if (document.getElementById('comment-title')) document.getElementById('comment-title').textContent = t.comments;
   if (document.getElementById('send-btn')) document.getElementById('send-btn').textContent = t.send;
-  // 🔥 Traducir el botón "Escuchar"
   if (document.getElementById('speak-all')) document.getElementById('speak-all').textContent = t.speak;
 
   // Actualizar opciones del filtro
@@ -133,15 +132,6 @@ function changeLanguage() {
   if (document.getElementById('option-calamares')) document.getElementById('option-calamares').textContent = t.optionCalamares;
   if (document.getElementById('option-varios')) document.getElementById('option-varios').textContent = t.optionVarios;
   if (document.getElementById('option-otros')) document.getElementById('option-otros').textContent = t.optionOtros;
-
-  // 💡 SAFE: Cambiar idioma de Snipcart solo si está cargado
-  if (window.Snipcart && typeof Snipcart.api !== 'undefined') {
-    try {
-      Snipcart.api.state.locale.set(currentLang);
-    } catch (error) {
-      console.warn('⚠️ No se pudo cambiar el idioma de Snipcart aún:', error);
-    }
-  }
 
   // Guardar preferencia
   localStorage.setItem('selected-lang', currentLang);
@@ -162,16 +152,6 @@ function renderizarGaleria() {
     const titulo = obra.titulo[currentLang];
     const descripcion = obra.descripcion[currentLang];
 
-    // Texto del botón según idioma
-    let buttonText;
-    switch(currentLang) {
-      case 'es': buttonText = 'Añadir al carrito'; break;
-      case 'en': buttonText = 'Add to cart'; break;
-      case 'fr': buttonText = 'Ajouter au panier'; break;
-      case 'ja': buttonText = 'カートに追加'; break;
-      default: buttonText = 'Añadir al carrito';
-    }
-
     const card = document.createElement('div');
     card.className = 'product-card';
     card.setAttribute('data-style', obra.estilo);
@@ -182,20 +162,10 @@ function renderizarGaleria() {
         <h3>${titulo}</h3>
         <p class="description">${descripcion}</p>
       </div>
-      <button class="snipcart-add-item"
-        data-item-id="${obra.id}"
-        data-item-name="${titulo}"
-        data-item-price="25.00"
-        data-item-image="${obra.imagen}"
-        data-item-url="/"
-        data-item-description="${descripcion}"
-        data-item-open-cart="true">
-        ${buttonText}
-      </button>
     `;
     gallery.appendChild(card);
 
-    // ✅ SOLO HACER CLICKEABLES: TÍTULO Y DESCRIPCIÓN
+    // ✅ Hacer clickeable: título y descripción
     hacerClicable(card.querySelector('h3'), titulo);
     hacerClicable(card.querySelector('.description'), descripcion);
 
@@ -230,27 +200,12 @@ function actualizarLightbox() {
   const img = document.getElementById('lightbox-img');
   const title = document.getElementById('lightbox-title');
   const desc = document.getElementById('lightbox-desc');
-  const btn = document.querySelector('.lightbox-add');
 
   if (img) img.src = obra.imagen;
   if (title) title.textContent = titulo;
   if (desc) desc.textContent = descripcion;
-  if (btn) {
-    const buttonText = 
-      currentLang === 'es' ? 'Añadir al carrito' :
-      currentLang === 'en' ? 'Add to cart' :
-      currentLang === 'fr' ? 'Ajouter au panier' :
-      'カートに追加';
-    btn.textContent = buttonText;
-    btn.setAttribute('data-item-id', obra.id);
-    btn.setAttribute('data-item-name', titulo);
-    btn.setAttribute('data-item-price', '25.00');
-    btn.setAttribute('data-item-image', obra.imagen);
-    btn.setAttribute('data-item-description', descripcion);
-    btn.setAttribute('data-item-open-cart', 'true');
-  }
 
-  // ✅ SOLO HACER CLICKEABLES: TÍTULO Y DESCRIPCIÓN EN EL LIGHTBOX
+  // ✅ Hacer clickeable: título y descripción en el lightbox
   if (title) hacerClicable(title, titulo);
   if (desc) hacerClicable(desc, descripcion);
 }
@@ -318,23 +273,6 @@ document.addEventListener('DOMContentLoaded', () => {
       if (e.key === 'ArrowRight') changeImage(1);
       if (e.key === 'ArrowLeft') changeImage(-1);
     }
-  });
-
-  // ✅ Snipcart: Cambiar idioma cuando esté listo
-  document.addEventListener('snipcart.ready', () => {
-    console.log('✅ Snipcart está listo y cargado');
-    if (window.Snipcart) {
-      try {
-        Snipcart.api.state.locale.set(currentLang);
-      } catch (error) {
-        console.error('❌ Error al establecer idioma en Snipcart:', error);
-      }
-    }
-  });
-
-  // Diagnóstico de errores de Snipcart
-  document.addEventListener('snipcart.error', (e) => {
-    console.error('❌ Error de Snipcart:', e.detail);
   });
 });
 
