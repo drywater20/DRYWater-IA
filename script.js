@@ -1,238 +1,352 @@
-// Traducciones
-const traducciones = {
-  es: {
-    titulo: "Galería de Arte",
-    descripcion: "Disfruta de una colección única de arte marino.",
-    filtro: "Filtrar por estilo:",
-    comentarios: "Comentarios:",
-    enviar: "Enviar",
-    estilos: {
-      peces: "peces",
-      calamares: "calamares",
-      varios: "varios",
-      otros: "otros",
-      todos: "todos"
-    }
-  },
-  en: {
-    titulo: "Art Gallery",
-    descripcion: "Enjoy a unique collection of marine art.",
-    filtro: "Filter by style:",
-    comentarios: "Comments:",
-    enviar: "Send",
-    estilos: {
-      peces: "fish",
-      calamares: "squids",
-      varios: "various",
-      otros: "others",
-      todos: "all"
-    }
-  },
-  fr: {
-    titulo: "Galerie d'Art",
-    descripcion: "Profitez d'une collection unique d'art marin.",
-    filtro: "Filtrer par style :",
-    comentarios: "Commentaires :",
-    enviar: "Envoyer",
-    estilos: {
-      peces: "poissons",
-      calamares: "calmars",
-      varios: "divers",
-      otros: "autres",
-      todos: "tous"
-    }
-  },
-  ja: {
-    titulo: "アートギャラリー",
-    descripcion: "海洋アートのユニークなコレクションをお楽しみください。",
-    filtro: "スタイルでフィルター:",
-    comentarios: "コメント:",
-    enviar: "送信",
-    estilos: {
-      peces: "魚",
-      calamares: "イカ",
-      varios: "様々な",
-      otros: "その他",
-      todos: "すべて"
-    }
-  }
-};
-
+// === Variables globales ===
 let obras = [];
+let currentImageIndex = 0;
 let currentLang = 'es';
-let currentIndex = 0;
 
-// Cargar obras
+// === Función para leer texto en voz alta ===
+function leerTexto(texto) {
+  if (!texto || typeof texto !== 'string') return;
+  window.speechSynthesis.cancel();
+  const utterance = new SpeechSynthesisUtterance(texto);
+  
+  const voices = window.speechSynthesis.getVoices();
+  const langVoice = {
+    es: voices.find(v => v.lang.includes('es')),
+    en: voices.find(v => v.lang.includes('en')),
+    fr: voices.find(v => v.lang.includes('fr')),
+    ja: voices.find(v => v.lang.includes('ja'))
+  };
+  
+  if (langVoice[currentLang]) {
+    utterance.voice = langVoice[currentLang];
+  }
+  
+  utterance.rate = 0.9;
+  utterance.pitch = 1;
+  window.speechSynthesis.speak(utterance);
+}
+
+// === Hacer que un elemento sea leído al hacer clic ===
+function hacerClicable(element, texto) {
+  if (!element || !texto) return;
+  element.style.cursor = 'pointer';
+  element.addEventListener('click', (e) => {
+    e.stopPropagation();
+    leerTexto(texto);
+  });
+}
+
+// === Cargar obras desde obras.json ===
 async function cargarObras() {
   try {
-    const res = await fetch('obras.json');
-    obras = await res.json();
-    if (!Array.isArray(obras)) {
-      console.error('obras.json no contiene un array');
-      obras = [];
-    }
-  } catch (err) {
-    console.error('Error cargando obras.json:', err);
-    obras = [];
+    const response = await fetch('obras.json');
+    if (!response.ok) throw new Error('No se pudo cargar obras.json: ' + response.status);
+    obras = await response.json();
+    console.log('✅ Obras cargadas:', obras);
+    renderizarGaleria();
+  } catch (error) {
+    console.error('❌ Error al cargar las obras:', error);
+    document.getElementById('gallery').innerHTML = `
+      <p style="color: red; text-align: center; margin: 20px;">
+        ⚠️ No se pudieron cargar las imágenes.<br>
+        Revisa la consola para más detalles.
+      </p>
+    `;
   }
 }
 
-// Inicializar
-async function init() {
-  await cargarObras();
-  await traducirInterfaz();
-  crearOpcionesFiltro();
-  mostrarGaleria();
-  configurarEventos();
+// === Cambiar idioma ===
+function changeLanguage() {
+  const langSelect = document.getElementById('lang-select');
+  if (!langSelect) return;
+  currentLang = langSelect.value;
+
+  // Textos de la interfaz por idioma
+  const translations = {
+    es: {
+      title: "Galería de Arte",
+      subtitle: "Disfruta de una colección única de arte marino.",
+      filterLabel: "Filtrar por estilo:",
+      optionAll: "todos",
+      optionPeces: "peces",
+      optionCalamares: "calamares",
+      optionVarios: "varios",
+      optionOtros: "otros",
+      comments: "Comentarios:",
+      send: "Enviar",
+      speak: "Escuchar"
+    },
+    en: {
+      title: "Art Gallery",
+      subtitle: "Enjoy a unique collection of marine art.",
+      filterLabel: "Filter by style:",
+      optionAll: "all",
+      optionPeces: "fish",
+      optionCalamares: "squid",
+      optionVarios: "various",
+      optionOtros: "others",
+      comments: "Comments:",
+      send: "Send",
+      speak: "Listen"
+    },
+    fr: {
+      title: "Galerie d'Art",
+      subtitle: "Profitez d'une collection unique d'art marin.",
+      filterLabel: "Filtrer par style :",
+      optionAll: "tous",
+      optionPeces: "poissons",
+      optionCalamares: "calmars",
+      optionVarios: "divers",
+      optionOtros: "autres",
+      comments: "Commentaires :",
+      send: "Envoyer",
+      speak: "Écouter"
+    },
+    ja: {
+      title: "アートギャラリー",
+      subtitle: "ユニークなマリンアートのコレクションをお楽しみください。",
+      filterLabel: "スタイルでフィルター：",
+      optionAll: "すべて",
+      optionPeces: "魚",
+      optionCalamares: "イカ",
+      optionVarios: "その他",
+      optionOtros: "その他",
+      comments: "コメント：",
+      send: "送信",
+      speak: "聞く"
+    }
+  };
+
+  const t = translations[currentLang];
+  // Actualizar textos
+  if (document.getElementById('main-title')) document.getElementById('main-title').textContent = t.title;
+  if (document.getElementById('main-subtitle')) document.getElementById('main-subtitle').textContent = t.subtitle;
+  if (document.getElementById('filter-label')) document.getElementById('filter-label').textContent = t.filterLabel;
+  if (document.getElementById('comment-title')) document.getElementById('comment-title').textContent = t.comments;
+  if (document.getElementById('send-btn')) document.getElementById('send-btn').textContent = t.send;
+  // 🔥 Traducir el botón "Escuchar"
+  if (document.getElementById('speak-all')) document.getElementById('speak-all').textContent = t.speak;
+
+  // Actualizar opciones del filtro
+  if (document.getElementById('option-all')) document.getElementById('option-all').textContent = t.optionAll;
+  if (document.getElementById('option-peces')) document.getElementById('option-peces').textContent = t.optionPeces;
+  if (document.getElementById('option-calamares')) document.getElementById('option-calamares').textContent = t.optionCalamares;
+  if (document.getElementById('option-varios')) document.getElementById('option-varios').textContent = t.optionVarios;
+  if (document.getElementById('option-otros')) document.getElementById('option-otros').textContent = t.optionOtros;
+
+  // 💡 SAFE: Cambiar idioma de Snipcart solo si está cargado
+  if (window.Snipcart && typeof Snipcart.api !== 'undefined') {
+    try {
+      Snipcart.api.state.locale.set(currentLang);
+    } catch (error) {
+      console.warn('⚠️ No se pudo cambiar el idioma de Snipcart aún:', error);
+    }
+  }
+
+  // Guardar preferencia
+  localStorage.setItem('selected-lang', currentLang);
+
+  // Volver a renderizar galería
+  if (typeof renderizarGaleria === 'function') {
+    renderizarGaleria();
+  }
 }
 
-// Traducir interfaz
-function traducirInterfaz() {
-  const t = traducciones[currentLang];
-  document.getElementById('titulo').textContent = t.titulo;
-  document.getElementById('descripcion').textContent = t.descripcion;
-  document.getElementById('label-filtro').textContent = t.filtro;
-  document.getElementById('label-comentarios').textContent = t.comentarios;
-  document.getElementById('guardar-comentarios').textContent = t.enviar;
-
-  // Traducir opción "todos" en el filtro
-  const optionTodos = document.getElementById('option-todos');
-  if (optionTodos) optionTodos.textContent = t.estilos.todos;
-
-  // Traducir opciones de estilo
-  document.querySelectorAll('[data-estilo]').forEach(opt => {
-    const estilo = opt.getAttribute('data-estilo');
-    opt.textContent = t.estilos[estilo] || estilo;
-  });
-}
-
-// Crear opciones de filtro
-function crearOpcionesFiltro() {
-  const filtro = document.getElementById('filtro-estilo');
-  filtro.innerHTML = `<option value="todos" id="option-todos">todos</option>`;
-  const estilos = ['peces', 'calamares', 'varios', 'otros'];
-  const t = traducciones[currentLang];
-  estilos.forEach(estilo => {
-    const opt = document.createElement('option');
-    opt.value = estilo;
-    opt.textContent = t.estilos[estilo];
-    opt.setAttribute('data-estilo', estilo);
-    filtro.appendChild(opt);
-  });
-}
-
-// Mostrar galería
-function mostrarGaleria() {
-  const galeria = document.getElementById('galeria');
-  galeria.innerHTML = '';
-
-  const filtro = document.getElementById('filtro-estilo').value;
-  const t = traducciones[currentLang];
+// === Renderizar galería de productos ===
+function renderizarGaleria() {
+  const gallery = document.getElementById('gallery');
+  if (!gallery) return;
+  gallery.innerHTML = '';
 
   obras.forEach((obra, index) => {
-    if (filtro !== 'todos' && obra.estilo !== filtro) return;
+    const titulo = obra.titulo[currentLang];
+    const descripcion = obra.descripcion[currentLang];
 
-    const div = document.createElement('div');
-    div.className = 'obra';
-    div.innerHTML = `
-      <img src="${obra.imagen}" alt="${obra.titulo[currentLang]}">
-      <div class="obra-info">
-        <h3>${obra.titulo[currentLang]}</h3>
-        <div class="style">${t.estilos[obra.estilo] || obra.estilo}</div>
+    // Texto del botón según idioma
+    let buttonText;
+    switch(currentLang) {
+      case 'es': buttonText = 'Añadir al carrito'; break;
+      case 'en': buttonText = 'Add to cart'; break;
+      case 'fr': buttonText = 'Ajouter au panier'; break;
+      case 'ja': buttonText = 'カートに追加'; break;
+      default: buttonText = 'Añadir al carrito';
+    }
+
+    const card = document.createElement('div');
+    card.className = 'product-card';
+    card.setAttribute('data-style', obra.estilo);
+
+    card.innerHTML = `
+      <img src="${obra.imagen}" alt="${titulo}" loading="lazy">
+      <div class="product-info">
+        <h3>${titulo}</h3>
+        <p class="description">${descripcion}</p>
       </div>
+      <button class="snipcart-add-item"
+        data-item-id="${obra.id}"
+        data-item-name="${titulo}"
+        data-item-price="25.00"
+        data-item-image="${obra.imagen}"
+        data-item-url="/"
+        data-item-description="${descripcion}"
+        data-item-open-cart="true">
+        ${buttonText}
+      </button>
     `;
-    div.addEventListener('click', () => abrirModal(index));
-    galeria.appendChild(div);
+    gallery.appendChild(card);
+
+    // ✅ SOLO HACER CLICKEABLES: TÍTULO Y DESCRIPCIÓN
+    hacerClicable(card.querySelector('h3'), titulo);
+    hacerClicable(card.querySelector('.description'), descripcion);
+
+    // Abrir lightbox al hacer clic en la imagen
+    card.querySelector('img').onclick = () => openLightbox(index);
   });
 }
 
-// Modal
-const modal = document.getElementById('modal');
-const closeModal = () => modal.style.display = 'none';
-
-function abrirModal(index) {
-  currentIndex = index;
-  const obra = obras[currentIndex];
-  const t = traducciones[currentLang];
-
-  document.getElementById('modal-img').src = obra.imagen;
-  document.getElementById('modal-titulo').textContent = obra.titulo[currentLang];
-  document.getElementById('modal-descripcion').textContent = obra.descripcion[currentLang];
-  document.getElementById('modal-comentarios').value = obtenerComentario(obra.id) || '';
-
-  // Favorito
-  const fav = document.getElementById('btn-favorito');
-  fav.textContent = esFavorito(obra.id) ? '★' : '☆';
-  fav.classList.toggle('fav', esFavorito(obra.id));
-
-  modal.style.display = 'block';
+// === Lightbox: abrir, cambiar, actualizar ===
+function openLightbox(index) {
+  currentImageIndex = index;
+  actualizarLightbox();
+  const lightbox = document.getElementById('lightbox');
+  if (lightbox) lightbox.style.display = 'flex';
 }
 
-// Navegación modal
-document.querySelector('.close').addEventListener('click', closeModal);
-document.querySelector('.nav.prev').addEventListener('click', () => {
-  currentIndex = (currentIndex - 1 + obras.length) % obras.length;
-  abrirModal(currentIndex);
+function closeLightbox() {
+  const lightbox = document.getElementById('lightbox');
+  if (lightbox) lightbox.style.display = 'none';
+}
+
+function changeImage(direction) {
+  currentImageIndex = (currentImageIndex + direction + obras.length) % obras.length;
+  actualizarLightbox();
+}
+
+function actualizarLightbox() {
+  const obra = obras[currentImageIndex];
+  const titulo = obra.titulo[currentLang];
+  const descripcion = obra.descripcion[currentLang];
+
+  const img = document.getElementById('lightbox-img');
+  const title = document.getElementById('lightbox-title');
+  const desc = document.getElementById('lightbox-desc');
+  const btn = document.querySelector('.lightbox-add');
+
+  if (img) img.src = obra.imagen;
+  if (title) title.textContent = titulo;
+  if (desc) desc.textContent = descripcion;
+  if (btn) {
+    const buttonText = 
+      currentLang === 'es' ? 'Añadir al carrito' :
+      currentLang === 'en' ? 'Add to cart' :
+      currentLang === 'fr' ? 'Ajouter au panier' :
+      'カートに追加';
+    btn.textContent = buttonText;
+    btn.setAttribute('data-item-id', obra.id);
+    btn.setAttribute('data-item-name', titulo);
+    btn.setAttribute('data-item-price', '25.00');
+    btn.setAttribute('data-item-image', obra.imagen);
+    btn.setAttribute('data-item-description', descripcion);
+    btn.setAttribute('data-item-open-cart', 'true');
+  }
+
+  // ✅ SOLO HACER CLICKEABLES: TÍTULO Y DESCRIPCIÓN EN EL LIGHTBOX
+  if (title) hacerClicable(title, titulo);
+  if (desc) hacerClicable(desc, descripcion);
+}
+
+// === Filtrar productos por estilo ===
+function filterProducts() {
+  const filter = document.getElementById('style-filter').value;
+  const cards = document.querySelectorAll('.product-card');
+
+  cards.forEach((card, index) => {
+    const style = obras[index].estilo;
+    if (filter === 'all' || style === filter) {
+      card.style.display = 'block';
+    } else {
+      card.style.display = 'none';
+    }
+  });
+}
+
+// === Inicialización al cargar ===
+document.addEventListener('DOMContentLoaded', () => {
+  // Cargar idioma guardado
+  const savedLang = localStorage.getItem('selected-lang') || 'es';
+  const langSelect = document.getElementById('lang-select');
+  if (langSelect) langSelect.value = savedLang;
+  currentLang = savedLang;
+
+  // Botón de escuchar todo
+  const speakAllBtn = document.getElementById('speak-all');
+  if (speakAllBtn) {
+    speakAllBtn.addEventListener('click', () => {
+      const textToSpeak = [
+        document.getElementById('main-title')?.textContent || '',
+        document.getElementById('main-subtitle')?.textContent || ''
+      ].join('. ');
+      leerTexto(textToSpeak);
+    });
+  }
+
+  // Cambiar idioma
+  if (typeof changeLanguage === 'function') {
+    changeLanguage();
+  }
+
+  // Eventos
+  const filterSelect = document.getElementById('style-filter');
+  if (filterSelect) {
+    filterSelect.addEventListener('change', filterProducts);
+  }
+
+  if (langSelect) {
+    langSelect.addEventListener('change', changeLanguage);
+  }
+
+  // Cargar obras
+  if (typeof cargarObras === 'function') {
+    cargarObras();
+  }
+
+  // Navegación con teclado
+  document.addEventListener('keydown', (e) => {
+    const lightbox = document.getElementById('lightbox');
+    if (lightbox && (lightbox.style.display === 'flex' || lightbox.style.display === 'block')) {
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowRight') changeImage(1);
+      if (e.key === 'ArrowLeft') changeImage(-1);
+    }
+  });
+
+  // ✅ Snipcart: Cambiar idioma cuando esté listo
+  document.addEventListener('snipcart.ready', () => {
+    console.log('✅ Snipcart está listo y cargado');
+    if (window.Snipcart) {
+      try {
+        Snipcart.api.state.locale.set(currentLang);
+      } catch (error) {
+        console.error('❌ Error al establecer idioma en Snipcart:', error);
+      }
+    }
+  });
+
+  // Diagnóstico de errores de Snipcart
+  document.addEventListener('snipcart.error', (e) => {
+    console.error('❌ Error de Snipcart:', e.detail);
+  });
 });
-document.querySelector('.nav.next').addEventListener('click', () => {
-  currentIndex = (currentIndex + 1) % obras.length;
-  abrirModal(currentIndex);
-});
 
-// Comentarios y favoritos
-function obtenerComentario(id) {
-  return localStorage.getItem(`comentario_${id}`) || '';
+// === Cargar voces del sistema ===
+let voicesLoaded = false;
+function cargarVoces() {
+  if (typeof speechSynthesis !== 'undefined' && !voicesLoaded) {
+    speechSynthesis.getVoices();
+    voicesLoaded = true;
+  }
 }
-
-function guardarComentario(id, texto) {
-  localStorage.setItem(`comentario_${id}`, texto);
+cargarVoces();
+if ('speechSynthesis' in window) {
+  window.speechSynthesis.onvoiceschanged = cargarVoces;
 }
-
-function esFavorito(id) {
-  return localStorage.getItem(`favorito_${id}`) === 'true';
-}
-
-function toggleFavorito(id) {
-  const esFav = !esFavorito(id);
-  localStorage.setItem(`favorito_${id}`, esFav);
-  return esFav;
-}
-
-// Eventos
-function configurarEventos() {
-  document.getElementById('idioma-select').addEventListener('change', (e) => {
-    currentLang = e.target.value;
-    traducirInterfaz();
-    mostrarGaleria();
-  });
-
-  document.getElementById('filtro-estilo').addEventListener('change', () => {
-    mostrarGaleria();
-  });
-
-  document.getElementById('guardar-comentarios').addEventListener('click', () => {
-    const obra = obras[currentIndex];
-    const texto = document.getElementById('modal-comentarios').value;
-    guardarComentario(obra.id, texto);
-  });
-
-  document.getElementById('btn-favorito').addEventListener('click', () => {
-    const obra = obras[currentIndex];
-    const esFav = toggleFavorito(obra.id);
-    const btn = document.getElementById('btn-favorito');
-    btn.textContent = esFav ? '★' : '☆';
-    btn.classList.toggle('fav', esFav);
-  });
-
-  document.getElementById('leer-texto').addEventListener('click', () => {
-    const texto = document.getElementById('descripcion').textContent;
-    const utterance = new SpeechSynthesisUtterance(texto);
-    utterance.lang = currentLang === 'ja' ? 'ja-JP' :
-                     currentLang === 'fr' ? 'fr-FR' :
-                     currentLang === 'en' ? 'en-US' : 'es-ES';
-    speechSynthesis.speak(utterance);
-  });
-}
-
-// Iniciar
-init();
