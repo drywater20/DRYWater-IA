@@ -1,104 +1,179 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Drywater Art | Galería de Arte Marino Digital</title>
-  <meta name="description" content="Colección exclusiva de arte marino generado por inteligencia artificial.">
-  <meta name="keywords" content="arte marino, arte digital, IA arte, arte oceánico, arte abstracto">
-  <meta name="author" content="Drywater Studio">
-  
-  <!-- Open Graph para redes sociales -->
-  <meta property="og:title" content="Drywater Art - Arte Marino por IA">
-  <meta property="og:description" content="Colección de arte marino digital generada por inteligencia artificial.">
-  <meta property="og:image" content="https://drywater-ia.netlify.app/imagenes/og-image.jpg">
-  <meta property="og:url" content="https://drywater-ia.netlify.app/">
-  <meta property="og:type" content="website">
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>DRYWater</title>
+		<link rel="stylesheet" href="style.css">
+		<link href="web-font-finished.css" rel="stylesheet" type="text/css">
+	</head>
 
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Open+Sans&display=swap" rel="stylesheet">
+	<body>
+		<div class="ful-img" id="ful_ImgBox">
+				<img src="LATAS/1.jpg" id="ful_Img" alt="">
+			<div class="leyenda"> 
+					<div class="Aspa" onclick="closeImg()">[x]</div>
+					<div class="ClaseTexto_Foto" id="Texto_Foto">Primera entrada.</div>				
+			</div>
+		</div>
+		
+		
+		<div class="Fondo1">
+			<h1><span>...dryWater</span></h1>
+		</div>
+		<div class="caja_inicio">
+				<div class="Fondo1_texto">	
+					<div class="Imagen">  <img class="Icono" src="Iconos/Audio_icono.svg"> </div>
+					<p onclick="Llama_Audio(1)">Descubre un mundo fascinante y tridimensional en cada una de mis obras. Mis pinturas son una exploración innovadora del volumen y la perspectiva, realizadas dentro de grandes latas. Utilizando capas de resina y acrílico, pinto cada parte de un pez o calamar en distintas capas, creando una asombrosa sensación de profundidad y movimiento.<br> Cada capa de resina encapsula una etapa del proceso creativo, permitiendo que las figuras marinas emerjan con realismo y vitalidad. A través de esta técnica, mis obras no solo invitan a ser observadas, sino también exploradas visualmente, ofreciendo una experiencia artística única que trasciende los límites del lienzo tradicional. Sumérgete en mi mundo submarino y déjate sorprender por la magia del volumen y la tridimensionalidad que cobra vida en cada una de mis latas.</p>
+				</div>
+				<div class="img_galeria">
+					<img src="LATAS/1.jpg" onclick="openFulImg(this.src,1)" alt="">
+					<img src="LATAS/2.jpg" onclick="openFulImg(this.src,2)" alt="">
+					<img src="LATAS/3.jpg" onclick="openFulImg(this.src,3)" alt="">
+					<img src="LATAS/4.jpg" onclick="openFulImg(this.src,4)" alt="">
+					<img src="LATAS/5.jpg" onclick="openFulImg(this.src,5)" alt="">
+					<img src="LATAS/6.jpg" onclick="openFulImg(this.src,6)" alt="">
+					<img src="LATAS/7.jpg" onclick="openFulImg(this.src,7)" alt="">
+					<img src="LATAS/8.jpg" onclick="openFulImg(this.src,8)" alt="">
+					<img src="LATAS/9.jpg" onclick="openFulImg(this.src,9)" alt="">
+					<img src="LATAS/10.jpg" onclick="openFulImg(this.src,10)" alt="">
+					<img src="LATAS/11.jpg" onclick="openFulImg(this.src,11)" alt="">
+					<img src="LATAS/12.jpg" onclick="openFulImg(this.src,12)" alt="">
+					<img src="LATAS/13.jpg" onclick="openFulImg(this.src,13)" alt="">
+					<img src="LATAS/14.jpg" onclick="openFulImg(this.src,14)" alt="">
+					<img src="LATAS/15.jpg" onclick="openFulImg(this.src,15)" alt="">	
+					<img src="LATAS/16.jpg" onclick="openFulImg(this.src,16)" alt="">	
+					<img src="LATAS/17.jpg" onclick="openFulImg(this.src,17)" alt="">	
+					<img src="LATAS/18.jpg" onclick="openFulImg(this.src,18)" alt="">
+				</div>
+				<div>
+					<p class="Indice">Pulsa sobre la imagen que deseas ampliar.</p>
+					<hr></hr>	
+				</div>
+		</div>		
+		<!--<h1><span>Introducción</span></h1>-->
+		<div id="Audios1_id">
+			
+			<h2>
+				<div class="contenedor">
+					<div class="Imagen">  <img class="Icono" src="Iconos/Audio_icono2.svg"> </div>
+					<div class="Titulo">Introduction</div>
+				</div>
+			</h2>	
+			
+			<p  onclick="Llama_Audio(2)">
+				Discover a fascinating and three-dimensional world in each of my works. My paintings are an innovative exploration of volume and perspective, made inside large cans. Using layers of resin and acrylic, I paint each part of a fish or squid in different layers, creating an amazing sense of depth and movement.<br>
+				Each layer of resin encapsulates a stage of the creative process, allowing the marine figures to emerge with realism and vitality. Through this technique, my works not only invite to be observed, but also visually explored, offering a unique artistic experience that transcends the limits of the traditional canvas.<br>
+				Immerse yourself in my underwater world and let yourself be surprised by the magic of volume and three-dimensionality that comes to life in each of my cans.
+			</p>
 
-  <link rel="stylesheet" href="style.css">
-</head>
+			
+			<h2>
+				<div class="contenedor">
+					<div class="Imagen">  <img class="Icono" src="Iconos/Audio_icono2.svg"> </div>
+					<div class="Titulo">Introduction</div>
+				</div>
+			</h2>
+			<p  onclick="Llama_Audio(3)">
+				Découvrez un monde fascinant et tridimensionnel dans chacune de mes œuvres. Mes peintures sont une exploration innovante du volume et de la perspective, réalisées dans de grandes boîtes de conserve. En utilisant des couches de résine et d'acrylique, je peins chaque partie d'un poisson ou d'un calmar en différentes couches, créant une incroyable sensation de profondeur et de mouvement.<br>
 
-<body>
-  <header>
-    <h1 id="main-title">Galería de Arte</h1>
-    <p id="main-subtitle">Disfruta de una colección única de arte marino.</p>
-  </header>
+				Chaque couche de résine encapsule une étape du processus créatif, permettant aux figures marines d'émerger avec réalisme et vitalité. Grâce à cette technique, mes œuvres invitent non seulement à être observées, mais aussi à être explorées visuellement, offrant une expérience artistique unique qui transcende les limites de la toile traditionnelle.<br>
 
-  <!-- Botón de escuchar todo -->
-  <div style="text-align: center; margin: 10px 0;">
-    <button id="speak-all">Escuchar</button>
-  </div>
+				Plongez-vous dans mon monde sous-marin et laissez-vous surprendre par la magie du volume et de la tridimensionnalité qui prend vie dans chacune de mes canettes.
+			</p>
+			<h2>
+				<div class="contenedor">
+					<div class="Imagen">  <img class="Icono" src="Iconos/Audio_icono2.svg"> </div>
+					<div class="Titulo">導入</div>
+				</div>
+				
+			</h2>
+			<p  onclick="Llama_Audio(4)">
+				私の各作品の魅力的で三次元の世界を発見してください。私の絵画は、大きな缶の中で制作された、ボリュームと遠近感の革新的な探求です。樹脂とアクリルの層を使用して、魚やイカの各部分を異なる層でペイントし、驚くほどの奥行きと動きの感覚を生み出します。<br>
 
-  <!-- Selector de idioma -->
-  <div class="language-selector">
-    <label id="lang-label">Idioma:</label>
-    <select id="lang-select">
-      <option value="es">Español</option>
-      <option value="en">English</option>
-      <option value="fr">Français</option>
-      <option value="ja">日本語</option>
-    </select>
-  </div>
+				樹脂の各層は創造的なプロセスの段階をカプセル化し、海洋の人物をリアルかつ活力をもって浮かび上がらせることができます。この技術を通じて、私の作品は観察されるだけでなく、視覚的に探求されるようになり、従来のキャンバスの限界を超えたユニークな芸術的体験を提供します。<br>
 
-  <!-- Filtros -->
-  <div class="filters">
-    <label id="filter-label">Filtrar por estilo:</label>
-    <select id="style-filter">
-      <option value="all" id="option-all">todos</option>
-      <option value="peces" id="option-peces">peces</option>
-      <option value="calamares" id="option-calamares">calamares</option>
-      <option value="varios" id="option-varios">varios</option>
-      <option value="otros" id="option-otros">otros</option>
-    </select>
-  </div>
+				私の水中世界に浸って、私の缶のそれぞれに命が吹き込まれるボリュームと立体感の魔法に驚かれてください。
+			</p>
+		</div>
+		
+		<hr></hr>		
 
-  <!-- Texto introductorio -->
-  <section id="intro-text">
-    <p id="intro-paragraph">
-      Aquí encontrarás una colección que combina técnicas pictóricas clásicas y digitales,
-      desde trazos impresionistas hasta composiciones abstractas generadas por inteligencia artificial.
-    </p>
-  </section>
+		<div class="Audios2" id="Audios2_id">
+			<div>
+				
+					<div class="contenedor">
+						<div class="Imagen">  <img class="Icono" src="Iconos/Audio_icono.svg"> </div>
+						<div class="Titulo">Mi pequeña historia</div>
+					</div>
 
-  <!-- Galería -->
-  <main id="gallery">
-    <!-- Obras dinámicas -->
-  </main>
+				
+				<p onclick="Llama_Audio(5)">
+					Cuando era pequeño, me fascinaba observar a los pescadores con sus cañas a lo largo de la costa. Pasaba horas viendo cómo pescaban, con la esperanza de una captura exitosa. Lo que más me llamaba la atención era el momento en que lograban sacar un pez, pulpo o jibión del mar y lo colocaban cuidadosamente en un cubo lleno de agua salada.<br>
 
-  <!-- Lightbox -->
-  <div id="lightbox" class="lightbox">
-    <span class="close-btn" onclick="closeLightbox()">&times;</span>
-    <span class="nav-btn prev" onclick="changeImage(-1)">&#10094;</span>
-    <div class="lightbox-content-wrapper">
-      <img id="lightbox-img" class="lightbox-content">
-      <div class="lightbox-info">
-        <h3 id="lightbox-title">Título</h3>
-        <p id="lightbox-desc">Descripción</p>
-      </div>
-    </div>
-    <span class="nav-btn next" onclick="changeImage(1)">&#10095;</span>
-  </div>
+					Para mí, ese cubo era más que un simple recipiente; era como un pequeño acuario improvisado. Podía ver a los peces nadar, moviéndose lentamente, sus escamas brillando. Era una ventana al mundo marino, una conexión directa con la vida acuática que tanto me intrigaba. La frescura y vitalidad de los peces en el cubo me inspiraban una profunda admiración por el mar y sus habitantes.<br>
 
-  <!-- Comentarios -->
-  <section class="comments-section">
-    <form action="https://formspree.io/f/xzzvngag" method="POST" style="text-align: center;">
-      <input type="hidden" name="form-name" value="comentarios" />
-      <h2 id="comment-title">Comentarios:</h2>
-      <textarea name="comment" id="comment" placeholder="Escribe tu comentario aquí..." required></textarea>
-      <button type="submit" id="send-btn">Enviar</button>
-    </form>
-  </section>
+					Esa sensación de asombro y maravilla que experimenté de niño ha perdurado en mi vida y se ha convertido en una parte esencial de mi arte. Hoy en día, a través de mis pinturas encapsuladas en latas, intento capturar esa misma esencia de frescura y vida que sentía al mirar aquellos cubos de agua salada. Mis obras son una celebración de la belleza y complejidad de los seres marinos, un homenaje a esos momentos de mi infancia que despertaron en mí una pasión por el arte y el mar.
+				</p>
+			</div>
+			<div>
+				
+					<div class="contenedor">
+						<div class="Imagen">  <img class="Icono" src="Iconos/Audio_icono.svg"> </div>
+						<div class="Titulo">My little story</div>
+					</div>
 
-  <!-- Footer -->
-  <footer>
-    <p>© 2025 Drywater Studio. Todos los derechos reservados.</p>
-    <p>Arte generado por IA</p>
-  </footer>
+				
+				<p  onclick="Llama_Audio(6)">
+					When I was little, I was fascinated by watching the fishermen with their rods along the coast. He would spend hours watching them fish, hoping for a successful catch. What caught my attention the most was the moment when they managed to remove a fish, octopus or cuttlefish from the sea and carefully placed it in a bucket full of salt water.<br>
 
-  <!-- Scripts -->
-  <script src="script.js"></script>
-</body>
+					To me, that bucket was more than just a container; It was like a small makeshift aquarium. I could see the fish swimming, moving slowly, their scales shining. It was a window to the marine world, a direct connection with the aquatic life that intrigued me so much. The freshness and vitality of the fish in the bucket inspired in me a deep admiration for the sea and its inhabitants.<br>
+
+					That sense of awe and wonder that I experienced as a child has endured in my life and has become an essential part of my art. Today, through my paintings encapsulated in cans, I try to capture that same essence of freshness and life that I felt when looking at those buckets of salt water. My works are a celebration of the beauty and complexity of marine beings, a tribute to those moments of my childhood that awakened in me a passion for art and the sea.
+				</p>
+			</div>
+			<div>
+				
+					<div class="contenedor">
+						<div class="Imagen">  <img class="Icono" src="Iconos/Audio_icono.svg"> </div>
+						<div class="Titulo">ma petite histoire</div>
+					</div>
+
+				
+				<p onclick="Llama_Audio(7)">
+					Quand j'étais petite, j'étais fascinée par l'observation des pêcheurs avec leurs cannes le long de la côte. Il passait des heures à les regarder pêcher, dans l'espoir d'une prise réussie. Ce qui a le plus retenu mon attention, c'est le moment où ils ont réussi à retirer de la mer un poisson, une pieuvre ou une seiche et à le placer soigneusement dans un seau rempli d'eau salée.<br>
+
+					Pour moi, ce seau était plus qu’un simple conteneur ; C'était comme un petit aquarium de fortune. Je pouvais voir les poissons nager, se déplacer lentement, leurs écailles brillaient. C’était une fenêtre sur le monde marin, un lien direct avec la vie aquatique qui m’intriguait tant. La fraîcheur et la vitalité du poisson dans le seau m'ont inspiré une profonde admiration pour la mer et ses habitants.<br>
+
+					Ce sentiment de respect et d’émerveillement que j’ai ressenti quand j’étais enfant a perduré dans ma vie et est devenu une partie essentielle de mon art. Aujourd'hui, à travers mes peintures encapsulées dans des canettes, j'essaie de capturer cette même essence de fraîcheur et de vie que j'ai ressentie en regardant ces seaux d'eau salée. Mes œuvres sont une célébration de la beauté et de la complexité des êtres marins, un hommage à ces moments de mon enfance qui ont éveillé en moi une passion pour l'art et la mer.
+				</p>
+			</div>
+			<div>
+				
+					<div class="contenedor">
+						<div class="Imagen">  <img class="Icono" src="Iconos/Audio_icono.svg"> </div>
+						<div class="Titulo">私の小さな物語</div>
+					</div>
+
+				
+				<p onclick="Llama_Audio(8)">
+					子供の頃、海岸沿いで釣り人が竿を出しているのを見るのに夢中でした。彼は何時間も彼らが魚を釣るのを眺めて、成功することを願っていました。私の注意を最も引いたのは、魚、タコ、イカを海から引き上げ、塩水を満たしたバケツに慎重に入れる瞬間でした。<br>
+
+					私にとって、そのバケツは単なる入れ物ではありませんでした。まるで仮設の小さな水族館のようでした。魚たちがゆっくりと泳ぎ、鱗を輝かせているのが見えました。それは海洋世界への窓であり、私にとって非常に興味をそそられた水生生物との直接的なつながりでした。バケツの中の魚の新鮮さと活力は、私に海とそこに住む人々への深い憧れを呼び起こしました。<br>
+
+					私が子供の頃に経験したその畏怖の念と驚きの感覚は、私の人生においても受け継がれており、私の芸術の不可欠な部分となっています。今日、私は缶に封入された私の絵画を通して、塩水の入ったバケツを見たときに感じたのと同じ新鮮さと生命の本質を捉えようとしています。私の作品は海洋生物の美しさと複雑さを称賛するものであり、私の中に芸術と海への情熱を目覚めさせた幼少期の瞬間へのオマージュです。
+				</p>
+			</div>
+		</div>
+		
+		<footer>
+			<div  class="Clase_footer">
+				<!--Página Web:-->
+			    <div> <a href="mailto:dgrafico@gmail.com" class="Correo">contacto</a> </div>
+				<div> <p>dgrafico.mail@gmail.com</p> </div>
+		
+			</div>
+		</footer>
+		
+		<script src="script.js"></script>
+	</body>
 </html>
