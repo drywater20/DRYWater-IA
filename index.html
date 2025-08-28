@@ -1,96 +1,58 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Drywater Art | Galería de Arte Marino Digital</title>
-  <meta name="description" content="Colección exclusiva de arte marino generado por inteligencia artificial. Descubre impresiones únicas y sumérgete en el mundo oceánico.">
-  <meta name="keywords" content="arte marino, arte digital, arte por IA, arte oceánico, arte abstracto">
-  <meta name="author" content="Drywater Studio">
-  
-  <!-- Open Graph para redes sociales -->
-  <meta property="og:title" content="Drywater Art - Arte Marino por IA">
-  <meta property="og:description" content="Colección de arte marino digital generado por inteligencia artificial.">
-  <meta property="og:image" content="https://drywater-ia.netlify.app/imagenes/og-image.jpg">
-  <meta property="og:url" content="https://drywater-ia.netlify.app/">
-  <meta property="og:type" content="website">
-
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Open+Sans&display=swap" rel="stylesheet">
-  
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Galería de Arte</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
-
 <body>
   <header>
     <h1 id="main-title">Galería de Arte</h1>
-    <p id="main-subtitle">Disfruta de una colección única de arte marino.</p>
-  </header>
+    <h2 id="main-subtitle">Disfruta de una colección única de arte marino.</h2>
 
-  <!-- Botón de escuchar todo -->
-  <div style="text-align: center; margin: 10px 0;">
-    <button id="speak-all">Escuchar</button>
-  </div>
-
-  <!-- Selector de idioma -->
-  <div class="language-selector">
-    <label id="lang-label">Idioma:</label>
-    <select id="lang-select">
+    <!-- Selector de idioma -->
+    <label for="lang-select">🌐</label>
+    <select id="lang-select" onchange="changeLanguage()">
       <option value="es">Español</option>
       <option value="en">English</option>
       <option value="fr">Français</option>
       <option value="ja">日本語</option>
     </select>
-  </div>
+  </header>
 
-  <!-- Filtros -->
-  <div class="filters">
-    <label id="filter-label">Filtrar por estilo:</label>
-    <select id="style-filter">
-      <option value="all" id="option-all">todos</option>
-      <option value="peces" id="option-peces">peces</option>
-      <option value="calamares" id="option-calamares">calamares</option>
-      <option value="varios" id="option-varios">varios</option>
-      <option value="otros" id="option-otros">otros</option>
+  <!-- Texto descriptivo de las obras -->
+  <section id="art-description" class="art-description">
+    <p id="description-text" style="cursor:pointer;">
+      Aquí encontrarás una colección de obras de arte marino digital, creadas con inteligencia artificial.
+    </p>
+  </section>
+
+  <!-- Controles -->
+  <section class="controls">
+    <label id="filter-label" for="filter">Filtrar por estilo:</label>
+    <select id="filter" onchange="filtrarObras()">
+      <option id="option-all" value="todos">todos</option>
+      <option id="option-peces" value="peces">peces</option>
+      <option id="option-calamares" value="calamares">calamares</option>
+      <option id="option-varios" value="varios">varios</option>
+      <option id="option-otros" value="otros">otros</option>
     </select>
-  </div>
+    <button id="speak-all">🔊 Escuchar</button>
+  </section>
 
-  <!-- Galería de productos -->
+  <!-- Galería -->
   <main id="gallery">
     <!-- Las obras se cargarán dinámicamente -->
   </main>
 
-  <!-- Lightbox para zoom con título y descripción -->
-  <div id="lightbox" class="lightbox">
-    <span class="close-btn" onclick="closeLightbox()">&times;</span>
-    <span class="nav-btn prev" onclick="changeImage(-1)">&#10094;</span>
-    <div class="lightbox-content-wrapper">
-      <img id="lightbox-img" class="lightbox-content">
-      <div class="lightbox-info">
-        <h3 id="lightbox-title">Título</h3>
-        <p id="lightbox-desc">Descripción</p>
-      </div>
-    </div>
-    <span class="nav-btn next" onclick="changeImage(1)">&#10095;</span>
-  </div>
-
-  <!-- Formulario de comentarios (con Formspree) -->
-  <section class="comments-section">
-    <form action="https://formspree.io/f/xzzvngag" method="POST" style="text-align: center;">
-      <input type="hidden" name="form-name" value="comentarios" />
-      <h2 id="comment-title">Comentarios:</h2>
-      <textarea name="comment" id="comment" placeholder="Escribe tu comentario aquí..." required style="width: 100%; max-width: 500px; height: 100px; padding: 10px; border: 1px solid #ccc; border-radius: 8px; margin-bottom: 10px; font-family: 'Open Sans', sans-serif;"></textarea>
-      <button type="submit" id="send-btn">Enviar</button>
-    </form>
+  <!-- Comentarios -->
+  <section id="comments-section">
+    <h3 id="comment-title">Comentarios:</h3>
+    <textarea id="comment-box" placeholder="Escribe tu comentario..."></textarea>
+    <button id="send-btn">Enviar</button>
   </section>
 
-  <!-- Footer -->
-  <footer>
-    <p>© 2025 Drywater Studio. Todos los derechos reservados.</p>
-    <p>Arte generado por IA • Inspirado en el océano</p>
-  </footer>
-
-  <!-- Scripts -->
   <script src="script.js"></script>
 </body>
 </html>
