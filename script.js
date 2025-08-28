@@ -14,7 +14,8 @@ const translations = {
     optionVarios: "varios",
     optionOtros: "otros",
     comments: "Comentarios:",
-    send: "Enviar"
+    send: "Enviar",
+    speak: "Escuchar"
   },
   en: {
     title: "Art Gallery",
@@ -27,7 +28,8 @@ const translations = {
     optionVarios: "various",
     optionOtros: "others",
     comments: "Comments:",
-    send: "Send"
+    send: "Send",
+    speak: "Listen"
   },
   fr: {
     title: "Galerie d'Art",
@@ -40,7 +42,8 @@ const translations = {
     optionVarios: "divers",
     optionOtros: "autres",
     comments: "Commentaires :",
-    send: "Envoyer"
+    send: "Envoyer",
+    speak: "Écouter"
   },
   ja: {
     title: "アートギャラリー",
@@ -53,7 +56,8 @@ const translations = {
     optionVarios: "その他",
     optionOtros: "その他",
     comments: "コメント：",
-    send: "送信"
+    send: "送信",
+    speak: "聞く"
   }
 };
 
@@ -116,18 +120,18 @@ function changeLanguage() {
   currentLang = langSelect.value;
 
   const t = translations[currentLang];
-  document.getElementById('main-title').textContent = t.title;
-  document.getElementById('main-subtitle').textContent = t.subtitle;
-  document.getElementById('description-text').textContent = t.description;
-  document.getElementById('filter-label').textContent = t.filterLabel;
-  document.getElementById('comment-title').textContent = t.comments;
-  document.getElementById('send-btn').textContent = t.send;
+  if (document.getElementById('main-title')) document.getElementById('main-title').textContent = t.title;
+  if (document.getElementById('main-subtitle')) document.getElementById('main-subtitle').textContent = t.subtitle;
+  if (document.getElementById('description-text')) document.getElementById('description-text').textContent = t.description;
+  if (document.getElementById('filter-label')) document.getElementById('filter-label').textContent = t.filterLabel;
+  if (document.getElementById('comment-title')) document.getElementById('comment-title').textContent = t.comments;
+  if (document.getElementById('send-btn')) document.getElementById('send-btn').textContent = t.send;
 
-  document.getElementById('option-all').textContent = t.optionAll;
-  document.getElementById('option-peces').textContent = t.optionPeces;
-  document.getElementById('option-calamares').textContent = t.optionCalamares;
-  document.getElementById('option-varios').textContent = t.optionVarios;
-  document.getElementById('option-otros').textContent = t.optionOtros;
+  if (document.getElementById('option-all')) document.getElementById('option-all').textContent = t.optionAll;
+  if (document.getElementById('option-peces')) document.getElementById('option-peces').textContent = t.optionPeces;
+  if (document.getElementById('option-calamares')) document.getElementById('option-calamares').textContent = t.optionCalamares;
+  if (document.getElementById('option-varios')) document.getElementById('option-varios').textContent = t.optionVarios;
+  if (document.getElementById('option-otros')) document.getElementById('option-otros').textContent = t.optionOtros;
 
   localStorage.setItem('selected-lang', currentLang);
   renderizarGaleria();
@@ -136,17 +140,21 @@ function changeLanguage() {
 // === Inicialización ===
 document.addEventListener('DOMContentLoaded', () => {
   const savedLang = localStorage.getItem('selected-lang') || 'es';
-  document.getElementById('lang-select').value = savedLang;
+  const langSelect = document.getElementById('lang-select');
+  if (langSelect) langSelect.value = savedLang;
   currentLang = savedLang;
 
-  // Click en el texto descriptivo → leerlo
-  document.getElementById('description-text').addEventListener('click', speakDescription);
+  // Al hacer clic en el texto descriptivo → leer en voz alta
+  const descText = document.getElementById('description-text');
+  if (descText) {
+    descText.addEventListener('click', speakDescription);
+  }
 
-  // Cargar obras
+  // Cargar las obras desde JSON
   fetch("obras.json")
     .then((res) => res.json())
     .then((data) => {
       obras = data;
-      changeLanguage();
+      changeLanguage(); // también renderiza la galería
     });
 });
