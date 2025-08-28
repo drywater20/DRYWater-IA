@@ -64,7 +64,7 @@ function changeLanguage() {
     es: {
       title: "Galería de Arte",
       subtitle: "Disfruta de una colección única de arte marino.",
-      intro: "Aquí encontrarás una colección que combina técnicas pictóricas clásicas y digitales, desde trazos impresionistas hasta composiciones abstractas generadas por inteligencia artificial.",
+      intro: "Descubre un mundo fascinante y tridimensional en cada una de mis obras. Mis pinturas son una exploración innovadora del volumen y la perspectiva, realizadas dentro de grandes latas. Utilizando capas de resina y acrílico, pinto cada parte de un pez o calamar en distintas capas, creando una asombrosa sensación de profundidad y movimiento. Cada capa de resina encapsula una etapa del proceso creativo, permitiendo que las figuras marinas emerjan con realismo y vitalidad. A través de esta técnica, mis obras no solo invitan a ser observadas, sino también exploradas visualmente, ofreciendo una experiencia artística única que trasciende los límites del lienzo tradicional. Sumérgete en mi mundo submarino y déjate sorprender por la magia del volumen y la tridimensionalidad que cobra vida en cada una de mis latas",
       filterLabel: "Filtrar por estilo:",
       optionAll: "todos",
       optionPeces: "peces",
