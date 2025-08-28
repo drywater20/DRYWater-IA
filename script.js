@@ -123,7 +123,7 @@ const translations = {
   const t = translations[currentLang];
   document.getElementById('main-title').textContent = t.title;
   document.getElementById('main-subtitle').textContent = t.subtitle;
-  document.getElementById('intro-paragraph').textContent = t.intro;
+
   document.getElementById('filter-label').textContent = t.filterLabel;
   document.getElementById('comment-title').textContent = t.comments;
   document.getElementById('send-btn').textContent = t.send;
