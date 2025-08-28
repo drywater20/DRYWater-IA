@@ -131,21 +131,6 @@ header p {
   box-shadow: 0 15px 20px -5px rgba(0,0,0,0.1);
   color: var(--primary-dark);
 }
-#intro-text {
-  max-width: 900px;
-  margin: 2rem auto;
-  padding: 1.5rem;
-  background: var(--surface-color);
-  border-radius: var(--border-radius-md);
-  box-shadow: var(--shadow-md);
-}
-
-#intro-text p {
-  font-size: 1.05rem;
-  color: var(--text-secondary);
-  line-height: 1.7;
-  text-align: center;
-}
 
 /* --- Galería de Productos --- */
 #gallery {
