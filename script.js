@@ -162,8 +162,7 @@ function renderizarGaleria() {
 
     hacerClicable(card.querySelector('h3'), titulo);
     hacerClicable(card.querySelector('.description'), descripcion);
-    const intro = document.getElementById('intro-paragraph');
-if (intro) hacerClicable(intro, intro.textContent);
+
 
 
     card.querySelector('img').onclick = () => openLightbox(index);
