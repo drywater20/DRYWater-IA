@@ -1,272 +1,264 @@
-[
-    {
-        "ruta": "imagenes/10.jpg",
+{
+    "texto_inicio": {
         "titulo": {
-            "es": "Título de 10.jpg",
-            "en": "Title of 10.jpg",
-            "fr": "Titre de 10.jpg",
-            "ja": "10.jpg のタイトル"
+            "es": "Obras de Arte",
+            "en": "Artworks",
+            "fr": "Œuvres d'art",
+            "ja": "芸術作品"
         },
-        "descripcion": {
-            "es": "Descripción de 10.jpg",
-            "en": "Description of 10.jpg",
-            "fr": "Description de 10.jpg",
-            "ja": "10.jpg の説明"
+        "descripcion_inicio": {
+            "es": "Bienvenido a nuestra galería de arte. Haz clic en este texto para escuchar la presentación.",
+            "en": "Welcome to our art gallery. Click on this text to listen to the presentation.",
+            "fr": "Bienvenue dans notre galerie d'art. Cliquez sur ce texte pour écouter la présentation.",
+            "ja": "アートギャラリーへようこそ。このテキストをクリックして、紹介を聞いてください。"
         }
     },
-    {
-        "ruta": "imagenes/11.jpg",
-        "titulo": {
-            "es": "Título de 11.jpg",
-            "en": "Title of 11.jpg",
-            "fr": "Titre de 11.jpg",
-            "ja": "11.jpg のタイトル"
+    "estilos": [
+        "peces",
+        "calamares",
+        "varios",
+        "otros"
+    ],
+    "obras": [
+        {
+            "imagen": "imagenes/10.jpg",
+            "titulo": {
+                "es": "Obra 1",
+                "en": "Artwork 1",
+                "fr": "obre 1",
+                "ja": "作品 1"
+            },
+            "descripcion": {
+                "es": "Esta obra pertenece al estilo peces. Descubre su significado.",
+                "en": "This artwork belongs to the peces style. Discover its meaning.",
+                "fr": "Cette œuvre appartient au style peces. Découvrez sa signification.",
+                "ja": "この作品はpeces様式に属しています。その意味を発見してください。"
+            },
+            "estilo": "peces"
         },
-        "descripcion": {
-            "es": "Descripción de 11.jpg",
-            "en": "Description of 11.jpg",
-            "fr": "Description de 11.jpg",
-            "ja": "11.jpg の説明"
-        }
-    },
-    {
-        "ruta": "imagenes/12.jpg",
-        "titulo": {
-            "es": "Título de 12.jpg",
-            "en": "Title of 12.jpg",
-            "fr": "Titre de 12.jpg",
-            "ja": "12.jpg のタイトル"
+        {
+            "imagen": "imagenes/11.jpg",
+            "titulo": {
+                "es": "Obra 2",
+                "en": "Artwork 2",
+                "fr": "obre 2",
+                "ja": "作品 2"
+            },
+            "descripcion": {
+                "es": "Esta obra pertenece al estilo calamares. Descubre su significado.",
+                "en": "This artwork belongs to the calamares style. Discover its meaning.",
+                "fr": "Cette œuvre appartient au style calamares. Découvrez sa signification.",
+                "ja": "この作品はcalamares様式に属しています。その意味を発見してください。"
+            },
+            "estilo": "calamares"
         },
-        "descripcion": {
-            "es": "Descripción de 12.jpg",
-            "en": "Description of 12.jpg",
-            "fr": "Description de 12.jpg",
-            "ja": "12.jpg の説明"
-        }
-    },
-    {
-        "ruta": "imagenes/13.jpg",
-        "titulo": {
-            "es": "Título de 13.jpg",
-            "en": "Title of 13.jpg",
-            "fr": "Titre de 13.jpg",
-            "ja": "13.jpg のタイトル"
+        {
+            "imagen": "imagenes/12.jpg",
+            "titulo": {
+                "es": "Obra 3",
+                "en": "Artwork 3",
+                "fr": "obre 3",
+                "ja": "作品 3"
+            },
+            "descripcion": {
+                "es": "Esta obra pertenece al estilo varios. Descubre su significado.",
+                "en": "This artwork belongs to the varios style. Discover its meaning.",
+                "fr": "Cette œuvre appartient au style varios. Découvrez sa signification.",
+                "ja": "この作品はvarios様式に属しています。その意味を発見してください。"
+            },
+            "estilo": "varios"
         },
-        "descripcion": {
-            "es": "Descripción de 13.jpg",
-            "en": "Description of 13.jpg",
-            "fr": "Description de 13.jpg",
-            "ja": "13.jpg の説明"
-        }
-    },
-    {
-        "ruta": "imagenes/14.jpg",
-        "titulo": {
-            "es": "Título de 14.jpg",
-            "en": "Title of 14.jpg",
-            "fr": "Titre de 14.jpg",
-            "ja": "14.jpg のタイトル"
+        {
+            "imagen": "imagenes/13.jpg",
+            "titulo": {
+                "es": "Obra 4",
+                "en": "Artwork 4",
+                "fr": "obre 4",
+                "ja": "作品 4"
+            },
+            "descripcion": {
+                "es": "Esta obra pertenece al estilo otros. Descubre su significado.",
+                "en": "This artwork belongs to the otros style. Discover its meaning.",
+                "fr": "Cette œuvre appartient au style otros. Découvrez sa signification.",
+                "ja": "この作品はotros様式に属しています。その意味を発見してください。"
+            },
+            "estilo": "otros"
         },
-        "descripcion": {
-            "es": "Descripción de 14.jpg",
-            "en": "Description of 14.jpg",
-            "fr": "Description de 14.jpg",
-            "ja": "14.jpg の説明"
-        }
-    },
-    {
-        "ruta": "imagenes/15.jpg",
-        "titulo": {
-            "es": "Título de 15.jpg",
-            "en": "Title of 15.jpg",
-            "fr": "Titre de 15.jpg",
-            "ja": "15.jpg のタイトル"
+        {
+            "imagen": "imagenes/14.jpg",
+            "titulo": {
+                "es": "Obra 5",
+                "en": "Artwork 5",
+                "fr": "obre 5",
+                "ja": "作品 5"
+            },
+            "descripcion": {
+                "es": "Esta obra pertenece al estilo peces. Descubre su significado.",
+                "en": "This artwork belongs to the peces style. Discover its meaning.",
+                "fr": "Cette œuvre appartient au style peces. Découvrez sa signification.",
+                "ja": "この作品はpeces様式に属しています。その意味を発見してください。"
+            },
+            "estilo": "peces"
         },
-        "descripcion": {
-            "es": "Descripción de 15.jpg",
-            "en": "Description of 15.jpg",
-            "fr": "Description de 15.jpg",
-            "ja": "15.jpg の説明"
-        }
-    },
-    {
-        "ruta": "imagenes/16.jpg",
-        "titulo": {
-            "es": "Título de 16.jpg",
-            "en": "Title of 16.jpg",
-            "fr": "Titre de 16.jpg",
-            "ja": "16.jpg のタイトル"
+        {
+            "imagen": "imagenes/15.jpg",
+            "titulo": {
+                "es": "Obra 6",
+                "en": "Artwork 6",
+                "fr": "obre 6",
+                "ja": "作品 6"
+            },
+            "descripcion": {
+                "es": "Esta obra pertenece al estilo calamares. Descubre su significado.",
+                "en": "This artwork belongs to the calamares style. Discover its meaning.",
+                "fr": "Cette œuvre appartient au style calamares. Découvrez sa signification.",
+                "ja": "この作品はcalamares様式に属しています。その意味を発見してください。"
+            },
+            "estilo": "calamares"
         },
-        "descripcion": {
-            "es": "Descripción de 16.jpg",
-            "en": "Description of 16.jpg",
-            "fr": "Description de 16.jpg",
-            "ja": "16.jpg の説明"
-        }
-    },
-    {
-        "ruta": "imagenes/17.jpg",
-        "titulo": {
-            "es": "Título de 17.jpg",
-            "en": "Title of 17.jpg",
-            "fr": "Titre de 17.jpg",
-            "ja": "17.jpg のタイトル"
+        {
+            "imagen": "imagenes/16.jpg",
+            "titulo": {
+                "es": "Obra 7",
+                "en": "Artwork 7",
+                "fr": "obre 7",
+                "ja": "作品 7"
+            },
+            "descripcion": {
+                "es": "Esta obra pertenece al estilo varios. Descubre su significado.",
+                "en": "This artwork belongs to the varios style. Discover its meaning.",
+                "fr": "Cette œuvre appartient au style varios. Découvrez sa signification.",
+                "ja": "この作品はvarios様式に属しています。その意味を発見してください。"
+            },
+            "estilo": "varios"
         },
-        "descripcion": {
-            "es": "Descripción de 17.jpg",
-            "en": "Description of 17.jpg",
-            "fr": "Description de 17.jpg",
-            "ja": "17.jpg の説明"
-        }
-    },
-    {
-        "ruta": "imagenes/18.jpg",
-        "titulo": {
-            "es": "Título de 18.jpg",
-            "en": "Title of 18.jpg",
-            "fr": "Titre de 18.jpg",
-            "ja": "18.jpg のタイトル"
+        {
+            "imagen": "imagenes/17.jpg",
+            "titulo": {
+                "es": "Obra 8",
+                "en": "Artwork 8",
+                "fr": "obre 8",
+                "ja": "作品 8"
+            },
+            "descripcion": {
+                "es": "Esta obra pertenece al estilo otros. Descubre su significado.",
+                "en": "This artwork belongs to the otros style. Discover its meaning.",
+                "fr": "Cette œuvre appartient au style otros. Découvrez sa signification.",
+                "ja": "この作品はotros様式に属しています。その意味を発見してください。"
+            },
+            "estilo": "otros"
         },
-        "descripcion": {
-            "es": "Descripción de 18.jpg",
-            "en": "Description of 18.jpg",
-            "fr": "Description de 18.jpg",
-            "ja": "18.jpg の説明"
-        }
-    },
-    {
-        "ruta": "imagenes/4.jpg",
-        "titulo": {
-            "es": "Título de 4.jpg",
-            "en": "Title of 4.jpg",
-            "fr": "Titre de 4.jpg",
-            "ja": "4.jpg のタイトル"
+        {
+            "imagen": "imagenes/18.jpg",
+            "titulo": {
+                "es": "Obra 9",
+                "en": "Artwork 9",
+                "fr": "obre 9",
+                "ja": "作品 9"
+            },
+            "descripcion": {
+                "es": "Esta obra pertenece al estilo peces. Descubre su significado.",
+                "en": "This artwork belongs to the peces style. Discover its meaning.",
+                "fr": "Cette œuvre appartient au style peces. Découvrez sa signification.",
+                "ja": "この作品はpeces様式に属しています。その意味を発見してください。"
+            },
+            "estilo": "peces"
         },
-        "descripcion": {
-            "es": "Descripción de 4.jpg",
-            "en": "Description of 4.jpg",
-            "fr": "Description de 4.jpg",
-            "ja": "4.jpg の説明"
-        }
-    },
-    {
-        "ruta": "imagenes/5.jpg",
-        "titulo": {
-            "es": "Título de 5.jpg",
-            "en": "Title of 5.jpg",
-            "fr": "Titre de 5.jpg",
-            "ja": "5.jpg のタイトル"
+        {
+            "imagen": "imagenes/4.jpg",
+            "titulo": {
+                "es": "Obra 10",
+                "en": "Artwork 10",
+                "fr": "obre 10",
+                "ja": "作品 10"
+            },
+            "descripcion": {
+                "es": "Esta obra pertenece al estilo calamares. Descubre su significado.",
+                "en": "This artwork belongs to the calamares style. Discover its meaning.",
+                "fr": "Cette œuvre appartient au style calamares. Découvrez sa signification.",
+                "ja": "この作品はcalamares様式に属しています。その意味を発見してください。"
+            },
+            "estilo": "calamares"
         },
-        "descripcion": {
-            "es": "Descripción de 5.jpg",
-            "en": "Description of 5.jpg",
-            "fr": "Description de 5.jpg",
-            "ja": "5.jpg の説明"
-        }
-    },
-    {
-        "ruta": "imagenes/6.jpg",
-        "titulo": {
-            "es": "Título de 6.jpg",
-            "en": "Title of 6.jpg",
-            "fr": "Titre de 6.jpg",
-            "ja": "6.jpg のタイトル"
+        {
+            "imagen": "imagenes/5.jpg",
+            "titulo": {
+                "es": "Obra 11",
+                "en": "Artwork 11",
+                "fr": "obre 11",
+                "ja": "作品 11"
+            },
+            "descripcion": {
+                "es": "Esta obra pertenece al estilo varios. Descubre su significado.",
+                "en": "This artwork belongs to the varios style. Discover its meaning.",
+                "fr": "Cette œuvre appartient au style varios. Découvrez sa signification.",
+                "ja": "この作品はvarios様式に属しています。その意味を発見してください。"
+            },
+            "estilo": "varios"
         },
-        "descripcion": {
-            "es": "Descripción de 6.jpg",
-            "en": "Description of 6.jpg",
-            "fr": "Description de 6.jpg",
-            "ja": "6.jpg の説明"
-        }
-    },
-    {
-        "ruta": "imagenes/7.jpg",
-        "titulo": {
-            "es": "Título de 7.jpg",
-            "en": "Title of 7.jpg",
-            "fr": "Titre de 7.jpg",
-            "ja": "7.jpg のタイトル"
+        {
+            "imagen": "imagenes/6.jpg",
+            "titulo": {
+                "es": "Obra 12",
+                "en": "Artwork 12",
+                "fr": "obre 12",
+                "ja": "作品 12"
+            },
+            "descripcion": {
+                "es": "Esta obra pertenece al estilo otros. Descubre su significado.",
+                "en": "This artwork belongs to the otros style. Discover its meaning.",
+                "fr": "Cette œuvre appartient au style otros. Découvrez sa signification.",
+                "ja": "この作品はotros様式に属しています。その意味を発見してください。"
+            },
+            "estilo": "otros"
         },
-        "descripcion": {
-            "es": "Descripción de 7.jpg",
-            "en": "Description of 7.jpg",
-            "fr": "Description de 7.jpg",
-            "ja": "7.jpg の説明"
-        }
-    },
-    {
-        "ruta": "imagenes/8.jpg",
-        "titulo": {
-            "es": "Título de 8.jpg",
-            "en": "Title of 8.jpg",
-            "fr": "Titre de 8.jpg",
-            "ja": "8.jpg のタイトル"
+        {
+            "imagen": "imagenes/7.jpg",
+            "titulo": {
+                "es": "Obra 13",
+                "en": "Artwork 13",
+                "fr": "obre 13",
+                "ja": "作品 13"
+            },
+            "descripcion": {
+                "es": "Esta obra pertenece al estilo peces. Descubre su significado.",
+                "en": "This artwork belongs to the peces style. Discover its meaning.",
+                "fr": "Cette œuvre appartient au style peces. Découvrez sa signification.",
+                "ja": "この作品はpeces様式に属しています。その意味を発見してください。"
+            },
+            "estilo": "peces"
         },
-        "descripcion": {
-            "es": "Descripción de 8.jpg",
-            "en": "Description of 8.jpg",
-            "fr": "Description de 8.jpg",
-            "ja": "8.jpg の説明"
-        }
-    },
-    {
-        "ruta": "imagenes/9.jpg",
-        "titulo": {
-            "es": "Título de 9.jpg",
-            "en": "Title of 9.jpg",
-            "fr": "Titre de 9.jpg",
-            "ja": "9.jpg のタイトル"
+        {
+            "imagen": "imagenes/8.jpg",
+            "titulo": {
+                "es": "Obra 14",
+                "en": "Artwork 14",
+                "fr": "obre 14",
+                "ja": "作品 14"
+            },
+            "descripcion": {
+                "es": "Esta obra pertenece al estilo calamares. Descubre su significado.",
+                "en": "This artwork belongs to the calamares style. Discover its meaning.",
+                "fr": "Cette œuvre appartient au style calamares. Découvrez sa signification.",
+                "ja": "この作品はcalamares様式に属しています。その意味を発見してください。"
+            },
+            "estilo": "calamares"
         },
-        "descripcion": {
-            "es": "Descripción de 9.jpg",
-            "en": "Description of 9.jpg",
-            "fr": "Description de 9.jpg",
-            "ja": "9.jpg の説明"
+        {
+            "imagen": "imagenes/9.jpg",
+            "titulo": {
+                "es": "Obra 15",
+                "en": "Artwork 15",
+                "fr": "obre 15",
+                "ja": "作品 15"
+            },
+            "descripcion": {
+                "es": "Esta obra pertenece al estilo varios. Descubre su significado.",
+                "en": "This artwork belongs to the varios style. Discover its meaning.",
+                "fr": "Cette œuvre appartient au style varios. Découvrez sa signification.",
+                "ja": "この作品はvarios様式に属しています。その意味を発見してください。"
+            },
+            "estilo": "varios"
         }
-    },
-    {
-        "ruta": "imagenes/fondo.JPG",
-        "titulo": {
-            "es": "Título de fondo.JPG",
-            "en": "Title of fondo.JPG",
-            "fr": "Titre de fondo.JPG",
-            "ja": "fondo.JPG のタイトル"
-        },
-        "descripcion": {
-            "es": "Descripción de fondo.JPG",
-            "en": "Description of fondo.JPG",
-            "fr": "Description de fondo.JPG",
-            "ja": "fondo.JPG の説明"
-        }
-    },
-    {
-        "ruta": "imagenes/fondo_horizontal.JPG",
-        "titulo": {
-            "es": "Título de fondo_horizontal.JPG",
-            "en": "Title of fondo_horizontal.JPG",
-            "fr": "Titre de fondo_horizontal.JPG",
-            "ja": "fondo_horizontal.JPG のタイトル"
-        },
-        "descripcion": {
-            "es": "Descripción de fondo_horizontal.JPG",
-            "en": "Description of fondo_horizontal.JPG",
-            "fr": "Description de fondo_horizontal.JPG",
-            "ja": "fondo_horizontal.JPG の説明"
-        }
-    },
-    {
-        "ruta": "imagenes/header.jpg",
-        "titulo": {
-            "es": "Título de header.jpg",
-            "en": "Title of header.jpg",
-            "fr": "Titre de header.jpg",
-            "ja": "header.jpg のタイトル"
-        },
-        "descripcion": {
-            "es": "Descripción de header.jpg",
-            "en": "Description of header.jpg",
-            "fr": "Description de header.jpg",
-            "ja": "header.jpg の説明"
-        }
-    }
-]
+    ]
+}

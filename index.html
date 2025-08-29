@@ -2,33 +2,54 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Galería de Arte</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <header>
-    <img src="cabecera.jpg" alt="Cabecera de galería" />
-    <h1 id="titulo">Galería de Arte</h1>
-    <div class="idiomas">
-      <button onclick="cambiarIdioma('es')">ES</button>
-      <button onclick="cambiarIdioma('en')">EN</button>
-      <button onclick="cambiarIdioma('fr')">FR</button>
-      <button onclick="cambiarIdioma('ja')">日本語</button>
-    </div>
+  <header id="cabecera">
+    <img src="recursos/header.jpg" alt="Cabecera" id="img-cabecera" />
   </header>
 
   <main>
-    <section class="galeria" id="galeria"></section>
+    <div id="texto-inicio" onclick="leerTexto()">
+      Cargando...
+    </div>
+
+    <div id="idiomas">
+      <button onclick="cambiarIdioma('es')">ES</button>
+      <button onclick="cambiarIdioma('en')">EN</button>
+      <button onclick="cambiarIdioma('fr')">FR</button>
+      <button onclick="cambiarIdioma('ja')">JA</button>
+    </div>
+
+    <div id="filtro-estilos">
+      <label id="label-filtro">Filtrar por estilo:</label>
+      <select id="selector-estilo" onchange="filtrarObras()">
+        <option value="todos">Todos los estilos</option>
+      </select>
+    </div>
+
+    <div id="galeria"></div>
   </main>
 
-  <div id="modal" class="modal hidden">
-    <div class="modal-contenido">
-      <span class="cerrar" onclick="cerrarModal()">×</span>
-      <img id="modal-img" />
-      <h2 id="modal-titulo"></h2>
-      <p id="modal-descripcion"></p>
+  <div id="modal" class="modal">
+    <span id="btn-cerrar" class="cerrar">&times;</span>
+    <img class="modal-contenido" id="img-modal" />
+    <div id="titulo-modal"></div>
+    <div id="descripcion-modal"></div>
+
+    <div id="comentarios-modal">
+      <h3 id="titulo-comentarios">Comentarios</h3>
+      <div id="lista-comentarios">Cargando comentarios...</div>
+      <div style="margin-top: 15px;">
+        <textarea id="nuevo-comentario" placeholder="Escribe un comentario..." rows="3" style="width: 100%;"></textarea>
+        <button id="btn-enviar" onclick="agregarComentario()" style="margin-top: 10px;">Enviar</button>
+      </div>
     </div>
+
+    <button id="anterior" class="nav">&#10094;</button>
+    <button id="siguiente" class="nav">&#10095;</button>
   </div>
 
   <script src="script.js"></script>
