@@ -228,6 +228,16 @@ document.addEventListener('DOMContentLoaded', () => {
         commentsInput.value = comments;
         commentsInput.placeholder = translations[currentLang].commentsLabel;
         modal.style.display = 'block';
+
+        // **AQUÍ ESTÁ LA CORRECCIÓN CLAVE**
+        // Añadimos los listeners cada vez que se abre el modal para garantizar que funcionen.
+        modalTitle.addEventListener('click', () => {
+            readText(modalTitle.textContent);
+        }, { once: true }); // El { once: true } asegura que solo se ejecute una vez para evitar múltiples escuchas.
+        
+        modalDescription.addEventListener('click', () => {
+            readText(modalDescription.textContent);
+        }, { once: true });
     };
 
     // Navega a la obra anterior/siguiente en el modal
@@ -252,7 +262,7 @@ document.addEventListener('DOMContentLoaded', () => {
         window.speechSynthesis.speak(speech);
     };
     
-    // Event Listeners
+    // Event Listeners (generales)
     languageSelect.addEventListener('change', (e) => {
         currentLang = e.target.value;
         localStorage.setItem('lang', currentLang);
@@ -275,15 +285,6 @@ document.addEventListener('DOMContentLoaded', () => {
         if (e.target === modal) {
             modal.style.display = 'none';
         }
-    });
-
-    // Añade listeners para leer título y descripción en el modal
-    modalTitle.addEventListener('click', () => {
-        readText(modalTitle.textContent);
-    });
-    
-    modalDescription.addEventListener('click', () => {
-        readText(modalDescription.textContent);
     });
 
     prevButton.addEventListener('click', () => navigateModal(-1));
