@@ -1,308 +1,272 @@
 [
-  {
-    "id": "obra_1",
-    "imagen": "imagenes/obra1.jpg",
-    "titulo": {
-      "es": "Obra Marina 1",
-      "en": "Marine Art 1",
-      "fr": "Art Marin 1",
-      "ja": "海洋アート 1"
+    {
+        "ruta": "imagenes/10.jpg",
+        "titulo": {
+            "es": "Título de 10.jpg",
+            "en": "Title of 10.jpg",
+            "fr": "Titre de 10.jpg",
+            "ja": "10.jpg のタイトル"
+        },
+        "descripcion": {
+            "es": "Descripción de 10.jpg",
+            "en": "Description of 10.jpg",
+            "fr": "Description de 10.jpg",
+            "ja": "10.jpg の説明"
+        }
     },
-    "descripcion": {
-      "es": "Una representación artística del mundo submarino.",
-      "en": "An artistic representation of the underwater world.",
-      "fr": "Une représentation artistique du monde sous-marin.",
-      "ja": "海底世界の芸術的な表現です。"
+    {
+        "ruta": "imagenes/11.jpg",
+        "titulo": {
+            "es": "Título de 11.jpg",
+            "en": "Title of 11.jpg",
+            "fr": "Titre de 11.jpg",
+            "ja": "11.jpg のタイトル"
+        },
+        "descripcion": {
+            "es": "Descripción de 11.jpg",
+            "en": "Description of 11.jpg",
+            "fr": "Description de 11.jpg",
+            "ja": "11.jpg の説明"
+        }
     },
-    "estilo": "peces"
-  },
-  {
-    "id": "obra_2",
-    "imagen": "imagenes/obra10.jpg",
-    "titulo": {
-      "es": "Profundidades 2",
-      "en": "Depths 2",
-      "fr": "Profondeurs 2",
-      "ja": "深海 2"
+    {
+        "ruta": "imagenes/12.jpg",
+        "titulo": {
+            "es": "Título de 12.jpg",
+            "en": "Title of 12.jpg",
+            "fr": "Titre de 12.jpg",
+            "ja": "12.jpg のタイトル"
+        },
+        "descripcion": {
+            "es": "Descripción de 12.jpg",
+            "en": "Description of 12.jpg",
+            "fr": "Description de 12.jpg",
+            "ja": "12.jpg の説明"
+        }
     },
-    "descripcion": {
-      "es": "Inspirado en especies marinas poco conocidas.",
-      "en": "Inspired by lesser-known marine species.",
-      "fr": "Inspiré par des espèces marines méconnues.",
-      "ja": "あまり知られていない海洋生物にインスパイアされました。"
+    {
+        "ruta": "imagenes/13.jpg",
+        "titulo": {
+            "es": "Título de 13.jpg",
+            "en": "Title of 13.jpg",
+            "fr": "Titre de 13.jpg",
+            "ja": "13.jpg のタイトル"
+        },
+        "descripcion": {
+            "es": "Descripción de 13.jpg",
+            "en": "Description of 13.jpg",
+            "fr": "Description de 13.jpg",
+            "ja": "13.jpg の説明"
+        }
     },
-    "estilo": "calamares"
-  },
-  {
-    "id": "obra_3",
-    "imagen": "imagenes/obra11.jpg",
-    "titulo": {
-      "es": "Criatura del Abismo 3",
-      "en": "Abyss Creature 3",
-      "fr": "Créature de l'Abîme 3",
-      "ja": "深海の生き物 3"
+    {
+        "ruta": "imagenes/14.jpg",
+        "titulo": {
+            "es": "Título de 14.jpg",
+            "en": "Title of 14.jpg",
+            "fr": "Titre de 14.jpg",
+            "ja": "14.jpg のタイトル"
+        },
+        "descripcion": {
+            "es": "Descripción de 14.jpg",
+            "en": "Description of 14.jpg",
+            "fr": "Description de 14.jpg",
+            "ja": "14.jpg の説明"
+        }
     },
-    "descripcion": {
-      "es": "Una representación artística del mundo submarino.",
-      "en": "An artistic representation of the underwater world.",
-      "fr": "Une représentation artistique du monde sous-marin.",
-      "ja": "海底世界の芸術的な表現です。"
+    {
+        "ruta": "imagenes/15.jpg",
+        "titulo": {
+            "es": "Título de 15.jpg",
+            "en": "Title of 15.jpg",
+            "fr": "Titre de 15.jpg",
+            "ja": "15.jpg のタイトル"
+        },
+        "descripcion": {
+            "es": "Descripción de 15.jpg",
+            "en": "Description of 15.jpg",
+            "fr": "Description de 15.jpg",
+            "ja": "15.jpg の説明"
+        }
     },
-    "estilo": "varios"
-  },
-  {
-    "id": "obra_4",
-    "imagen": "imagenes/obra12.jpg",
-    "titulo": {
-      "es": "Reflejos del Océano 4",
-      "en": "Ocean Reflections 4",
-      "fr": "Reflets de l'Océan 4",
-      "ja": "海の反射 4"
+    {
+        "ruta": "imagenes/16.jpg",
+        "titulo": {
+            "es": "Título de 16.jpg",
+            "en": "Title of 16.jpg",
+            "fr": "Titre de 16.jpg",
+            "ja": "16.jpg のタイトル"
+        },
+        "descripcion": {
+            "es": "Descripción de 16.jpg",
+            "en": "Description of 16.jpg",
+            "fr": "Description de 16.jpg",
+            "ja": "16.jpg の説明"
+        }
     },
-    "descripcion": {
-      "es": "Inspirado en especies marinas poco conocidas.",
-      "en": "Inspired by lesser-known marine species.",
-      "fr": "Inspiré par des espèces marines méconnues.",
-      "ja": "あまり知られていない海洋生物にインスパイアされました。"
+    {
+        "ruta": "imagenes/17.jpg",
+        "titulo": {
+            "es": "Título de 17.jpg",
+            "en": "Title of 17.jpg",
+            "fr": "Titre de 17.jpg",
+            "ja": "17.jpg のタイトル"
+        },
+        "descripcion": {
+            "es": "Descripción de 17.jpg",
+            "en": "Description of 17.jpg",
+            "fr": "Description de 17.jpg",
+            "ja": "17.jpg の説明"
+        }
     },
-    "estilo": "otros"
-  },
-  {
-    "id": "obra_5",
-    "imagen": "imagenes/obra13.jpg",
-    "titulo": {
-      "es": "Obra Marina 5",
-      "en": "Marine Art 5",
-      "fr": "Art Marin 5",
-      "ja": "海洋アート 5"
+    {
+        "ruta": "imagenes/18.jpg",
+        "titulo": {
+            "es": "Título de 18.jpg",
+            "en": "Title of 18.jpg",
+            "fr": "Titre de 18.jpg",
+            "ja": "18.jpg のタイトル"
+        },
+        "descripcion": {
+            "es": "Descripción de 18.jpg",
+            "en": "Description of 18.jpg",
+            "fr": "Description de 18.jpg",
+            "ja": "18.jpg の説明"
+        }
     },
-    "descripcion": {
-      "es": "Una representación artística del mundo submarino.",
-      "en": "An artistic representation of the underwater world.",
-      "fr": "Une représentation artistique du monde sous-marin.",
-      "ja": "海底世界の芸術的な表現です。"
+    {
+        "ruta": "imagenes/4.jpg",
+        "titulo": {
+            "es": "Título de 4.jpg",
+            "en": "Title of 4.jpg",
+            "fr": "Titre de 4.jpg",
+            "ja": "4.jpg のタイトル"
+        },
+        "descripcion": {
+            "es": "Descripción de 4.jpg",
+            "en": "Description of 4.jpg",
+            "fr": "Description de 4.jpg",
+            "ja": "4.jpg の説明"
+        }
     },
-    "estilo": "peces"
-  },
-  {
-    "id": "obra_6",
-    "imagen": "imagenes/obra14.jpg",
-    "titulo": {
-      "es": "Profundidades 6",
-      "en": "Depths 6",
-      "fr": "Profondeurs 6",
-      "ja": "深海 6"
+    {
+        "ruta": "imagenes/5.jpg",
+        "titulo": {
+            "es": "Título de 5.jpg",
+            "en": "Title of 5.jpg",
+            "fr": "Titre de 5.jpg",
+            "ja": "5.jpg のタイトル"
+        },
+        "descripcion": {
+            "es": "Descripción de 5.jpg",
+            "en": "Description of 5.jpg",
+            "fr": "Description de 5.jpg",
+            "ja": "5.jpg の説明"
+        }
     },
-    "descripcion": {
-      "es": "Inspirado en especies marinas poco conocidas.",
-      "en": "Inspired by lesser-known marine species.",
-      "fr": "Inspiré par des espèces marines méconnues.",
-      "ja": "あまり知られていない海洋生物にインスパイアされました。"
+    {
+        "ruta": "imagenes/6.jpg",
+        "titulo": {
+            "es": "Título de 6.jpg",
+            "en": "Title of 6.jpg",
+            "fr": "Titre de 6.jpg",
+            "ja": "6.jpg のタイトル"
+        },
+        "descripcion": {
+            "es": "Descripción de 6.jpg",
+            "en": "Description of 6.jpg",
+            "fr": "Description de 6.jpg",
+            "ja": "6.jpg の説明"
+        }
     },
-    "estilo": "calamares"
-  },
-  {
-    "id": "obra_7",
-    "imagen": "imagenes/obra15.jpg",
-    "titulo": {
-      "es": "Criatura del Abismo 7",
-      "en": "Abyss Creature 7",
-      "fr": "Créature de l'Abîme 7",
-      "ja": "深海の生き物 7"
+    {
+        "ruta": "imagenes/7.jpg",
+        "titulo": {
+            "es": "Título de 7.jpg",
+            "en": "Title of 7.jpg",
+            "fr": "Titre de 7.jpg",
+            "ja": "7.jpg のタイトル"
+        },
+        "descripcion": {
+            "es": "Descripción de 7.jpg",
+            "en": "Description of 7.jpg",
+            "fr": "Description de 7.jpg",
+            "ja": "7.jpg の説明"
+        }
     },
-    "descripcion": {
-      "es": "Una representación artística del mundo submarino.",
-      "en": "An artistic representation of the underwater world.",
-      "fr": "Une représentation artistique du monde sous-marin.",
-      "ja": "海底世界の芸術的な表現です。"
+    {
+        "ruta": "imagenes/8.jpg",
+        "titulo": {
+            "es": "Título de 8.jpg",
+            "en": "Title of 8.jpg",
+            "fr": "Titre de 8.jpg",
+            "ja": "8.jpg のタイトル"
+        },
+        "descripcion": {
+            "es": "Descripción de 8.jpg",
+            "en": "Description of 8.jpg",
+            "fr": "Description de 8.jpg",
+            "ja": "8.jpg の説明"
+        }
     },
-    "estilo": "varios"
-  },
-  {
-    "id": "obra_8",
-    "imagen": "imagenes/obra16.jpg",
-    "titulo": {
-      "es": "Reflejos del Océano 8",
-      "en": "Ocean Reflections 8",
-      "fr": "Reflets de l'Océan 8",
-      "ja": "海の反射 8"
+    {
+        "ruta": "imagenes/9.jpg",
+        "titulo": {
+            "es": "Título de 9.jpg",
+            "en": "Title of 9.jpg",
+            "fr": "Titre de 9.jpg",
+            "ja": "9.jpg のタイトル"
+        },
+        "descripcion": {
+            "es": "Descripción de 9.jpg",
+            "en": "Description of 9.jpg",
+            "fr": "Description de 9.jpg",
+            "ja": "9.jpg の説明"
+        }
     },
-    "descripcion": {
-      "es": "Inspirado en especies marinas poco conocidas.",
-      "en": "Inspired by lesser-known marine species.",
-      "fr": "Inspiré par des espèces marines méconnues.",
-      "ja": "あまり知られていない海洋生物にインスパイアされました。"
+    {
+        "ruta": "imagenes/fondo.JPG",
+        "titulo": {
+            "es": "Título de fondo.JPG",
+            "en": "Title of fondo.JPG",
+            "fr": "Titre de fondo.JPG",
+            "ja": "fondo.JPG のタイトル"
+        },
+        "descripcion": {
+            "es": "Descripción de fondo.JPG",
+            "en": "Description of fondo.JPG",
+            "fr": "Description de fondo.JPG",
+            "ja": "fondo.JPG の説明"
+        }
     },
-    "estilo": "otros"
-  },
-  {
-    "id": "obra_9",
-    "imagen": "imagenes/obra17.jpg",
-    "titulo": {
-      "es": "Obra Marina 9",
-      "en": "Marine Art 9",
-      "fr": "Art Marin 9",
-      "ja": "海洋アート 9"
+    {
+        "ruta": "imagenes/fondo_horizontal.JPG",
+        "titulo": {
+            "es": "Título de fondo_horizontal.JPG",
+            "en": "Title of fondo_horizontal.JPG",
+            "fr": "Titre de fondo_horizontal.JPG",
+            "ja": "fondo_horizontal.JPG のタイトル"
+        },
+        "descripcion": {
+            "es": "Descripción de fondo_horizontal.JPG",
+            "en": "Description of fondo_horizontal.JPG",
+            "fr": "Description de fondo_horizontal.JPG",
+            "ja": "fondo_horizontal.JPG の説明"
+        }
     },
-    "descripcion": {
-      "es": "Una representación artística del mundo submarino.",
-      "en": "An artistic representation of the underwater world.",
-      "fr": "Une représentation artistique du monde sous-marin.",
-      "ja": "海底世界の芸術的な表現です。"
-    },
-    "estilo": "peces"
-  },
-  {
-    "id": "obra_10",
-    "imagen": "imagenes/obra18.jpg",
-    "titulo": {
-      "es": "Profundidades 10",
-      "en": "Depths 10",
-      "fr": "Profondeurs 10",
-      "ja": "深海 10"
-    },
-    "descripcion": {
-      "es": "Inspirado en especies marinas poco conocidas.",
-      "en": "Inspired by lesser-known marine species.",
-      "fr": "Inspiré par des espèces marines méconnues.",
-      "ja": "あまり知られていない海洋生物にインスパイアされました。"
-    },
-    "estilo": "calamares"
-  },
-  {
-    "id": "obra_11",
-    "imagen": "imagenes/obra2.jpg",
-    "titulo": {
-      "es": "Criatura del Abismo 11",
-      "en": "Abyss Creature 11",
-      "fr": "Créature de l'Abîme 11",
-      "ja": "深海の生き物 11"
-    },
-    "descripcion": {
-      "es": "Una representación artística del mundo submarino.",
-      "en": "An artistic representation of the underwater world.",
-      "fr": "Une représentation artistique du monde sous-marin.",
-      "ja": "海底世界の芸術的な表現です。"
-    },
-    "estilo": "varios"
-  },
-  {
-    "id": "obra_12",
-    "imagen": "imagenes/obra3.jpg",
-    "titulo": {
-      "es": "Reflejos del Océano 12",
-      "en": "Ocean Reflections 12",
-      "fr": "Reflets de l'Océan 12",
-      "ja": "海の反射 12"
-    },
-    "descripcion": {
-      "es": "Inspirado en especies marinas poco conocidas.",
-      "en": "Inspired by lesser-known marine species.",
-      "fr": "Inspiré par des espèces marines méconnues.",
-      "ja": "あまり知られていない海洋生物にインスパイアされました。"
-    },
-    "estilo": "otros"
-  },
-  {
-    "id": "obra_13",
-    "imagen": "imagenes/obra4.jpg",
-    "titulo": {
-      "es": "Obra Marina 13",
-      "en": "Marine Art 13",
-      "fr": "Art Marin 13",
-      "ja": "海洋アート 13"
-    },
-    "descripcion": {
-      "es": "Una representación artística del mundo submarino.",
-      "en": "An artistic representation of the underwater world.",
-      "fr": "Une représentation artistique du monde sous-marin.",
-      "ja": "海底世界の芸術的な表現です。"
-    },
-    "estilo": "peces"
-  },
-  {
-    "id": "obra_14",
-    "imagen": "imagenes/obra5.jpg",
-    "titulo": {
-      "es": "Profundidades 14",
-      "en": "Depths 14",
-      "fr": "Profondeurs 14",
-      "ja": "深海 14"
-    },
-    "descripcion": {
-      "es": "Inspirado en especies marinas poco conocidas.",
-      "en": "Inspired by lesser-known marine species.",
-      "fr": "Inspiré par des espèces marines méconnues.",
-      "ja": "あまり知られていない海洋生物にインスパイアされました。"
-    },
-    "estilo": "calamares"
-  },
-  {
-    "id": "obra_15",
-    "imagen": "imagenes/obra6.jpg",
-    "titulo": {
-      "es": "Criatura del Abismo 15",
-      "en": "Abyss Creature 15",
-      "fr": "Créature de l'Abîme 15",
-      "ja": "深海の生き物 15"
-    },
-    "descripcion": {
-      "es": "Una representación artística del mundo submarino.",
-      "en": "An artistic representation of the underwater world.",
-      "fr": "Une représentation artistique du monde sous-marin.",
-      "ja": "海底世界の芸術的な表現です。"
-    },
-    "estilo": "varios"
-  },
-  {
-    "id": "obra_16",
-    "imagen": "imagenes/obra7.jpg",
-    "titulo": {
-      "es": "Reflejos del Océano 16",
-      "en": "Ocean Reflections 16",
-      "fr": "Reflets de l'Océan 16",
-      "ja": "海の反射 16"
-    },
-    "descripcion": {
-      "es": "Inspirado en especies marinas poco conocidas.",
-      "en": "Inspired by lesser-known marine species.",
-      "fr": "Inspiré par des espèces marines méconnues.",
-      "ja": "あまり知られていない海洋生物にインスパイアされました。"
-    },
-    "estilo": "otros"
-  },
-  {
-    "id": "obra_17",
-    "imagen": "imagenes/obra8.jpg",
-    "titulo": {
-      "es": "Obra Marina 17",
-      "en": "Marine Art 17",
-      "fr": "Art Marin 17",
-      "ja": "海洋アート 17"
-    },
-    "descripcion": {
-      "es": "Una representación artística del mundo submarino.",
-      "en": "An artistic representation of the underwater world.",
-      "fr": "Une représentation artistique du monde sous-marin.",
-      "ja": "海底世界の芸術的な表現です。"
-    },
-    "estilo": "peces"
-  },
-  {
-    "id": "obra_18",
-    "imagen": "imagenes/obra9.jpg",
-    "titulo": {
-      "es": "Profundidades 18",
-      "en": "Depths 18",
-      "fr": "Profondeurs 18",
-      "ja": "深海 18"
-    },
-    "descripcion": {
-      "es": "Inspirado en especies marinas poco conocidas.",
-      "en": "Inspired by lesser-known marine species.",
-      "fr": "Inspiré par des espèces marines méconnues.",
-      "ja": "あまり知られていない海洋生物にインスパイアされました。"
-    },
-    "estilo": "calamares"
-  }
+    {
+        "ruta": "imagenes/header.jpg",
+        "titulo": {
+            "es": "Título de header.jpg",
+            "en": "Title of header.jpg",
+            "fr": "Titre de header.jpg",
+            "ja": "header.jpg のタイトル"
+        },
+        "descripcion": {
+            "es": "Descripción de header.jpg",
+            "en": "Description of header.jpg",
+            "fr": "Description de header.jpg",
+            "ja": "header.jpg の説明"
+        }
+    }
 ]
