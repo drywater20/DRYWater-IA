@@ -244,6 +244,13 @@ document.addEventListener('DOMContentLoaded', () => {
         
         openModal(filteredArtworks[currentArtworkIndex]);
     };
+
+    // Función para leer un texto con la voz de síntesis
+    const readText = (text) => {
+        const speech = new SpeechSynthesisUtterance(text);
+        speech.lang = currentLang;
+        window.speechSynthesis.speak(speech);
+    };
     
     // Event Listeners
     languageSelect.addEventListener('change', (e) => {
@@ -257,9 +264,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     listenButton.addEventListener('click', () => {
         const textToSpeak = `${translations[currentLang].title}. ${translations[currentLang].description}`;
-        const speech = new SpeechSynthesisUtterance(textToSpeak);
-        speech.lang = currentLang;
-        window.speechSynthesis.speak(speech);
+        readText(textToSpeak);
     });
 
     closeButton.addEventListener('click', () => {
@@ -270,6 +275,15 @@ document.addEventListener('DOMContentLoaded', () => {
         if (e.target === modal) {
             modal.style.display = 'none';
         }
+    });
+
+    // Nuevo: Listeners para leer título y descripción en el modal
+    modalTitle.addEventListener('click', () => {
+        readText(modalTitle.textContent);
+    });
+    
+    modalDescription.addEventListener('click', () => {
+        readText(modalDescription.textContent);
     });
 
     prevButton.addEventListener('click', () => navigateModal(-1));
