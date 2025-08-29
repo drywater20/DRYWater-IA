@@ -1,124 +1,55 @@
-# generar_obras.py
 import os
 import json
+import unicodedata
 
-# Configuración
-CARPETA_IMAGENES = "imagenes"
-ARCHIVO_SALIDA = "obras.json"
+# Archivos a excluir
+excluir = {"fondo.jpg", "header.jpg", "fondo_horizontal.jpg"}
 
-# Estilos personalizados
-ESTILOS = ["peces", "calamares", "varios", "otros"]
+# Estilos cíclicos
+estilos = ["peces", "calamares", "varios", "otros"]
 
-# Texto inicial multilingüe
-TEXTO_INICIO = {
-    "titulo": {
-        "es": "Obras de Arte",
-        "en": "Artworks",
-        "fr": "Œuvres d'art",
-        "ja": "芸術作品"
-    },
-    "descripcion_inicio": {
-        "es": "Bienvenido a nuestra galería de arte. Haz clic en este texto para escuchar la presentación.",
-        "en": "Welcome to our art gallery. Click on this text to listen to the presentation.",
-        "fr": "Bienvenue dans notre galerie d'art. Cliquez sur ce texte pour écouter la présentation.",
-        "ja": "アートギャラリーへようこそ。このテキストをクリックして、紹介を聞いてください。"
-    }
+# Traducciones
+traducciones = {
+    "peces": {"es": "peces", "en": "fish", "fr": "poissons", "ja": "魚"},
+    "calamares": {"es": "calamares", "en": "squids", "fr": "calmars", "ja": "イカ"},
+    "varios": {"es": "varios", "en": "various", "fr": "divers", "ja": "様々な"},
+    "otros": {"es": "otros", "en": "others", "fr": "autres", "ja": "その他"}
 }
 
-# Imágenes que NO son obras (recursos del sitio)
-IMAGENES_EXCLUIDAS = [
-    "fondo.jpg", "fondo.JPG", "fondo.jpeg", "fondo.png",
-    "fondo_horizontal.jpg", "fondo_horizontal.JPG",
-    "header.jpg", "header.JPG", "cabecera.jpg", "cabecera.JPG"
+# Títulos y descripciones base (puedes personalizar)
+titulos_base = [
+    {"es": "Obra Marina {}", "en": "Marine Art {}", "fr": "Art Marin {}", "ja": "海洋アート {}"},
+    {"es": "Profundidades {}", "en": "Depths {}", "fr": "Profondeurs {}", "ja": "深海 {}"},
+    {"es": "Criatura del Abismo {}", "en": "Abyss Creature {}", "fr": "Créature de l'Abîme {}", "ja": "深海の生き物 {}"},
+    {"es": "Reflejos del Océano {}", "en": "Ocean Reflections {}", "fr": "Reflets de l'Océan {}", "ja": "海の反射 {}"}
 ]
 
+descs_base = [
+    {"es": "Una representación artística del mundo submarino.", "en": "An artistic representation of the underwater world.", "fr": "Une représentation artistique du monde sous-marin.", "ja": "海底世界の芸術的な表現です。"},
+    {"es": "Inspirado en especies marinas poco conocidas.", "en": "Inspired by lesser-known marine species.", "fr": "Inspiré par des espèces marines méconnues.", "ja": "あまり知られていない海洋生物にインスパイアされました。"}
+]
 
-def normalizar_nombre(nombre):
-    return os.path.splitext(nombre.lower())[0]
+# Obtener imágenes
+imagenes_dir = "imagenes"
+imagenes = [f for f in os.listdir(imagenes_dir) if f.lower().endswith(('.jpg', '.jpeg', '.png')) and f.lower() not in excluir]
 
+# Generar obras
+obras = []
+for i, img in enumerate(imagenes):
+    estilo = estilos[i % len(estilos)]
+    titulo = {lang: titulos_base[i % len(titulos_base)][lang].format(i+1) for lang in ["es", "en", "fr", "ja"]}
+    descripcion = {lang: descs_base[i % len(descs_base)][lang] for lang in ["es", "en", "fr", "ja"]}
+    
+    obras.append({
+        "id": f"obra_{i+1}",
+        "imagen": f"imagenes/{img.lower()}",
+        "titulo": titulo,
+        "descripcion": descripcion,
+        "estilo": estilo
+    })
 
-def generar_obras():
-    if not os.path.exists(CARPETA_IMAGENES):
-        print(f"❌ ERROR: La carpeta '{CARPETA_IMAGENES}' no existe.")
-        input("Presiona Enter para salir...")
-        return
+# Guardar en obras.json con UTF-8
+with open("obras.json", "w", encoding="utf-8") as f:
+    json.dump(obras, f, ensure_ascii=False, indent=2)
 
-    try:
-        archivos = os.listdir(CARPETA_IMAGENES)
-    except Exception as e:
-        print(f"❌ ERROR al leer la carpeta: {e}")
-        input("Presiona Enter para salir...")
-        return
-
-    imagenes_validas = []
-    extensiones_validas = ('.jpg', '.jpeg', '.png', '.gif', '.JPG', '.JPEG', '.PNG', '.GIF')
-
-    for archivo in archivos:
-        ruta_completa = os.path.join(CARPETA_IMAGENES, archivo)
-        if not os.path.isfile(ruta_completa):
-            continue
-        if not archivo.lower().endswith(extensiones_validas):
-            print(f"⏭️  Saltando (no es imagen): {archivo}")
-            continue
-
-        nombre_base = normalizar_nombre(archivo)
-        if nombre_base in [normalizar_nombre(f) for f in IMAGENES_EXCLUIDAS]:
-            print(f"⏭️  Saltando (recurso): {archivo}")
-            continue
-
-        ruta_relativa = f"imagenes/{nombre_base}.jpg"
-        imagenes_validas.append(ruta_relativa)
-        print(f"✅ Imagen válida: {archivo}")
-
-    if len(imagenes_validas) == 0:
-        print("❌ No se encontraron imágenes válidas en 'imagenes/'.")
-        input("Presiona Enter para salir...")
-        return
-
-    # Generar obras
-    obras = []
-    for i, ruta in enumerate(imagenes_validas):
-        estilo = ESTILOS[i % len(ESTILOS)]  # Asignar estilo cíclicamente
-
-        titulo = {
-            "es": f"Obra {i + 1}",
-            "en": f"Artwork {i + 1}",
-            "fr": f"Œuvre {i + 1}",
-            "ja": f"作品 {i + 1}"
-        }
-
-        descripcion = {
-            "es": f"Esta obra pertenece al estilo {estilo}. Descubre su significado.",
-            "en": f"This artwork belongs to the {estilo} style. Discover its meaning.",
-            "fr": f"Cette œuvre appartient au style {estilo}. Découvrez sa signification.",
-            "ja": f"この作品は{estilo}様式に属しています。その意味を発見してください。"
-        }
-
-        obras.append({
-            "imagen": ruta,
-            "titulo": titulo,
-            "descripcion": descripcion,
-            "estilo": estilo
-        })
-
-    datos = {
-        "texto_inicio": TEXTO_INICIO,
-        "estilos": ESTILOS,
-        "obras": obras
-    }
-
-    try:
-        with open(ARCHIVO_SALIDA, 'w', encoding='utf-8') as f:
-            json.dump(datos, f, ensure_ascii=False, indent=4)
-        print(f"\n✅ ¡ÉXITO! '{ARCHIVO_SALIDA}' generado con {len(obras)} obras.")
-        print(f"📁 Ruta: {os.path.abspath(ARCHIVO_SALIDA)}")
-    except Exception as e:
-        print(f"❌ ERROR al guardar '{ARCHIVO_SALIDA}': {e}")
-        input("Presiona Enter para salir...")
-        return
-
-    input("\n✨ Todo listo. Presiona Enter para cerrar.")
-
-
-if __name__ == "__main__":
-    generar_obras()
+print(f"✅ {len(obras)} obras generadas y guardadas en obras.json (UTF-8)")
