@@ -1,52 +1,66 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Galería de Arte</title>
-  <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="title-main">Galería de Arte</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-  <header>
-    <h1 id="tituloPrincipal">Galería de Arte Marítimo</h1>
-    <p id="descripcionPrincipal">Descubre el arte inspirado en el océano.</p>
-    <button id="btnEscuchar">🔊 Escuchar</button>
-  </header>
-
-  <div class="controls">
-    <label for="filtroEstilo" id="labelFiltro">Filtrar por estilo:</label>
-    <select id="filtroEstilo"></select>
-
-    <label for="selectorIdioma" id="labelIdioma">Idioma:</label>
-    <select id="selectorIdioma">
-      <option value="es">Español</option>
-      <option value="en">English</option>
-      <option value="fr">Français</option>
-      <option value="ja">日本語</option>
-    </select>
-  </div>
-
-  <main id="galeria" class="galeria"></main>
-
-  <div id="modal" class="modal">
-    <div class="modal-content">
-      <span class="close">&times;</span>
-      <button class="nav-btn prev"><</button>
-      <div class="modal-body">
-        <img id="modalImagen" src="" alt="" />
-        <h2 id="modalTitulo"></h2>
-        <p id="modalDescripcion"></p>
-        <div class="comentarios">
-          <h3 id="labelComentarios">Comentarios</h3>
-          <textarea id="inputComentarios" rows="3"></textarea>
-          <button id="btnEnviar">Enviar</button>
+    <header>
+        <div class="lang-selector">
+            <select id="language-select">
+                <option value="es">ES</option>
+                <option value="en">EN</option>
+                <option value="fr">FR</option>
+                <option value="ja">JA</option>
+            </select>
         </div>
-        <button id="btnFavorito" class="favorite-btn">★</button>
-      </div>
-      <button class="nav-btn next">></button>
-    </div>
-  </div>
+        <h1 id="main-heading"></h1>
+        <p id="main-description"></p>
+        <button id="listen-button" class="audio-button">
+            <i class="fas fa-volume-up"></i>
+        </button>
+    </header>
 
-  <script src="script.js" type="module"></script>
+    <main>
+        <div class="controls-container">
+            <div class="filter-group">
+                <label id="filter-label" for="style-filter"></label>
+                <select id="style-filter"></select>
+            </div>
+        </div>
+
+        <div id="art-gallery" class="gallery-grid">
+            <p id="loading-message">Cargando obras...</p>
+        </div>
+    </main>
+
+    <div id="art-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <div class="modal-body">
+                <button id="prev-button" class="nav-button prev-button">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <div class="artwork-details">
+                    <img id="modal-image" src="" alt="Obra de arte">
+                    <h2 id="modal-title"></h2>
+                    <p id="modal-description"></p>
+                    <div class="comments-section">
+                        <h3 id="comments-label"></h3>
+                        <textarea id="comments-input" placeholder=""></textarea>
+                        <button id="save-comment-button"></button>
+                    </div>
+                </div>
+                <button id="next-button" class="nav-button next-button">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>

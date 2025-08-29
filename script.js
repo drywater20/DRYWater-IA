@@ -1,226 +1,288 @@
-// script.js
-import { obras } from './obras.json' assert { type: 'json' };
+document.addEventListener('DOMContentLoaded', () => {
+    const galleryContainer = document.getElementById('art-gallery');
+    const styleFilter = document.getElementById('style-filter');
+    const languageSelect = document.getElementById('language-select');
+    const listenButton = document.getElementById('listen-button');
+    const modal = document.getElementById('art-modal');
+    const closeButton = document.querySelector('.close-button');
+    const modalImage = document.getElementById('modal-image');
+    const modalTitle = document.getElementById('modal-title');
+    const modalDescription = document.getElementById('modal-description');
+    const prevButton = document.getElementById('prev-button');
+    const nextButton = document.getElementById('next-button');
+    const commentsInput = document.getElementById('comments-input');
+    const saveCommentButton = document.getElementById('save-comment-button');
 
-const idiomaDefault = 'es';
-let obrasFiltradas = [];
-let obraActualIndex = 0;
-let comentariosGuardados = JSON.parse(localStorage.getItem('comentarios')) || {};
-let favoritos = JSON.parse(localStorage.getItem('favoritos')) || [];
+    let allArtworks = [];
+    let filteredArtworks = [];
+    let currentArtworkIndex = 0;
+    
+    // Traducciones
+    const translations = {
+        es: {
+            title: "Galería de Arte Web",
+            description: "Descubre una colección de arte digital. 🐟🦑",
+            filterLabel: "Filtrar por estilo:",
+            allStyles: "todos",
+            commentsLabel: "Comentarios:",
+            sendButton: "Enviar",
+            loading: "Cargando obras...",
+            style_peces: "peces",
+            style_calamares: "calamares",
+            style_varios: "varios",
+            style_otros: "otros"
+        },
+        en: {
+            title: "Web Art Gallery",
+            description: "Discover a collection of digital art. 🐟🦑",
+            filterLabel: "Filter by style:",
+            allStyles: "all",
+            commentsLabel: "Comments:",
+            sendButton: "Submit",
+            loading: "Loading artworks...",
+            style_peces: "fish",
+            style_calamares: "squids",
+            style_varios: "various",
+            style_otros: "others"
+        },
+        fr: {
+            title: "Galerie d'Art Web",
+            description: "Découvrez une collection d'art numérique. 🐟🦑",
+            filterLabel: "Filtrer par style:",
+            allStyles: "tous",
+            commentsLabel: "Commentaires:",
+            sendButton: "Envoyer",
+            loading: "Chargement des œuvres...",
+            style_peces: "poissons",
+            style_calamares: "calmars",
+            style_varios: "divers",
+            style_otros: "autres"
+        },
+        ja: {
+            title: "ウェブアートギャラリー",
+            description: "デジタルアートのコレクションをご覧ください。 🐟🦑",
+            filterLabel: "スタイルでフィルタリング:",
+            allStyles: "すべて",
+            commentsLabel: "コメント:",
+            sendButton: "送信",
+            loading: "作品を読み込み中...",
+            style_peces: "魚",
+            style_calamares: "イカ",
+            style_varios: "様々な",
+            style_otros: "その他"
+        }
+    };
 
-const textos = {
-  es: {
-    tituloPrincipal: "Galería de Arte Marítimo",
-    descripcionPrincipal: "Descubre el arte inspirado en el océano.",
-    filtroLabel: "Filtrar por estilo:",
-    idiomaLabel: "Idioma:",
-    comentarios: "Comentarios",
-    enviar: "Enviar",
-    todos: "todos"
-  },
-  en: {
-    tituloPrincipal: "Marine Art Gallery",
-    descripcionPrincipal: "Discover art inspired by the ocean.",
-    filtroLabel: "Filter by style:",
-    idiomaLabel: "Language:",
-    comentarios: "Comments",
-    enviar: "Send",
-    todos: "all"
-  },
-  fr: {
-    tituloPrincipal: "Galerie d'art marin",
-    descriptionPrincipal: "Découvrez l'art inspiré par l'océan.",
-    filtroLabel: "Filtrer par style :",
-    idiomaLabel: "Langue :",
-    comentarios: "Commentaires",
-    enviar: "Envoyer",
-    todos: "tous"
-  },
-  ja: {
-    tituloPrincipal: "海洋アートギャラリー",
-    descripcionPrincipal: "海にインスパイアされたアートを発見してください。",
-    filtroLabel: "スタイルでフィルター:",
-    idiomaLabel: "言語:",
-    comentarios: "コメント",
-    enviar: "送信",
-    todos: "すべて"
-  }
-};
+    // Estilos y sus traducciones
+    const stylesMap = {
+        peces: { es: 'peces', en: 'fish', fr: 'poissons', ja: '魚' },
+        calamares: { es: 'calamares', en: 'squids', fr: 'calmars', ja: 'イカ' },
+        varios: { es: 'varios', en: 'various', fr: 'divers', ja: '様々な' },
+        otros: { es: 'otros', en: 'others', fr: 'autres', ja: 'その他' }
+    };
+    
+    // Carga inicial del idioma
+    let currentLang = localStorage.getItem('lang') || 'es';
+    languageSelect.value = currentLang;
 
-const estilos = {
-  peces: { es: "peces", en: "fish", fr: "poissons", ja: "魚" },
-  calamares: { es: "calamares", en: "squids", fr: "calmars", ja: "イカ" },
-  varios: { es: "varios", en: "various", fr: "divers", ja: "様々な" },
-  otros: { es: "otros", en: "others", fr: "autres", ja: "その他" }
-};
+    // Función para traducir el texto de la interfaz
+    const translateUI = (lang) => {
+        document.getElementById('title-main').textContent = translations[lang].title;
+        document.getElementById('main-heading').textContent = translations[lang].title;
+        document.getElementById('main-description').textContent = translations[lang].description;
+        document.getElementById('filter-label').textContent = translations[lang].filterLabel;
+        document.getElementById('comments-label').textContent = translations[lang].commentsLabel;
+        document.getElementById('save-comment-button').textContent = translations[lang].sendButton;
+        document.getElementById('loading-message').textContent = translations[lang].loading;
+        
+        // Actualizar opciones del filtro de estilo
+        const filterOptions = styleFilter.options;
+        filterOptions[0].textContent = translations[lang].allStyles;
+        for (let i = 1; i < filterOptions.length; i++) {
+            const styleKey = filterOptions[i].value;
+            filterOptions[i].textContent = stylesMap[styleKey][lang];
+        }
+    };
 
-let idiomaActual = localStorage.getItem('idioma') || idiomaDefault;
+    // Cargar los datos de las obras
+    const fetchArtworks = async () => {
+        try {
+            const response = await fetch('obras.json');
+            if (!response.ok) {
+                throw new Error('Error al cargar obras.json');
+            }
+            allArtworks = await response.json();
+            document.getElementById('loading-message').style.display = 'none';
+            populateStylesFilter();
+            filterAndDisplayArtworks();
+        } catch (error) {
+            console.error('No se pudo cargar obras.json:', error);
+            galleryContainer.innerHTML = `<p class="error-message">Error: No se pudieron cargar las obras. Asegúrate de que "obras.json" exista y esté bien formado. 🧐</p>`;
+        }
+    };
+    
+    // Crea las opciones del filtro de estilos
+    const populateStylesFilter = () => {
+        styleFilter.innerHTML = '';
+        const allOption = document.createElement('option');
+        allOption.value = 'all';
+        styleFilter.appendChild(allOption);
+        
+        const styles = new Set(allArtworks.map(obra => obra.estilo));
+        styles.forEach(style => {
+            const option = document.createElement('option');
+            option.value = style;
+            styleFilter.appendChild(option);
+        });
+        translateUI(currentLang);
+    };
 
-function traducir(key) {
-  return textos[idiomaActual]?.[key] || key;
-}
+    // Renderiza las obras en la galería
+    const renderGallery = (artworks) => {
+        galleryContainer.innerHTML = '';
+        if (artworks.length === 0) {
+            galleryContainer.innerHTML = `<p class="no-results-message">No se encontraron obras para este estilo. 🤷</p>`;
+            return;
+        }
+        
+        const favorites = JSON.parse(localStorage.getItem('favorites')) || {};
+        
+        artworks.forEach(artwork => {
+            const card = document.createElement('div');
+            card.className = 'artwork-card';
+            card.dataset.id = artwork.id;
+            
+            const isFavorite = favorites[artwork.id] || false;
+            
+            card.innerHTML = `
+                <img src="${artwork.imagen}" alt="${artwork.titulo[currentLang]}">
+                <div class="artwork-info">
+                    <h3>${artwork.titulo[currentLang]}</h3>
+                    <p>${stylesMap[artwork.estilo][currentLang]}</p>
+                </div>
+                <button class="favorite-button ${isFavorite ? 'is-favorite' : ''}" data-id="${artwork.id}">★</button>
+            `;
+            
+            galleryContainer.appendChild(card);
+        });
+        addEventListenersToCards();
+        addEventListenersToFavorites();
+    };
 
-function traducirEstilo(estilo) {
-  return estilos[estilo]?.[idiomaActual] || estilo;
-}
+    // Añade listeners a las tarjetas para abrir el modal
+    const addEventListenersToCards = () => {
+        document.querySelectorAll('.artwork-card').forEach(card => {
+            card.addEventListener('click', (e) => {
+                // Evita que el clic en el botón de favorito propague al modal
+                if (e.target.closest('.favorite-button')) return;
+                
+                const artworkId = card.dataset.id;
+                const index = filteredArtworks.findIndex(obra => obra.id === artworkId);
+                if (index !== -1) {
+                    currentArtworkIndex = index;
+                    openModal(filteredArtworks[currentArtworkIndex]);
+                }
+            });
+        });
+    };
+    
+    // Añade listeners a los botones de favorito
+    const addEventListenersToFavorites = () => {
+        document.querySelectorAll('.favorite-button').forEach(button => {
+            button.addEventListener('click', (e) => {
+                e.stopPropagation(); // Evita que se abra el modal
+                const artworkId = button.dataset.id;
+                let favorites = JSON.parse(localStorage.getItem('favorites')) || {};
+                
+                if (favorites[artworkId]) {
+                    delete favorites[artworkId];
+                    button.classList.remove('is-favorite');
+                } else {
+                    favorites[artworkId] = true;
+                    button.classList.add('is-favorite');
+                }
+                localStorage.setItem('favorites', JSON.stringify(favorites));
+            });
+        });
+    };
 
-function actualizarInterfaz() {
-  document.getElementById('tituloPrincipal').textContent = traducir('tituloPrincipal');
-  document.getElementById('descripcionPrincipal').textContent = traducir('descripcionPrincipal');
-  document.getElementById('labelFiltro').textContent = traducir('filtroLabel');
-  document.getElementById('labelIdioma').textContent = traducir('idiomaLabel');
-  document.getElementById('labelComentarios').textContent = traducir('comentarios');
-  document.getElementById('btnEnviar').textContent = traducir('enviar');
-  const filtro = document.getElementById('filtroEstilo');
-  if (filtro) {
-    const selected = filtro.value;
-    filtro.innerHTML = '';
-    const option = document.createElement('option');
-    option.value = 'todos';
-    option.textContent = traducir('todos');
-    filtro.appendChild(option);
-    Object.keys(estilos).forEach(estilo => {
-      const opt = document.createElement('option');
-      opt.value = estilo;
-      opt.textContent = traducirEstilo(estilo);
-      filtro.appendChild(opt);
+    // Filtra y muestra las obras
+    const filterAndDisplayArtworks = () => {
+        const selectedStyle = styleFilter.value;
+        if (selectedStyle === 'all') {
+            filteredArtworks = allArtworks;
+        } else {
+            filteredArtworks = allArtworks.filter(obra => obra.estilo === selectedStyle);
+        }
+        renderGallery(filteredArtworks);
+    };
+
+    // Abre el modal con los detalles de una obra
+    const openModal = (artwork) => {
+        const comments = JSON.parse(localStorage.getItem(`comments_${artwork.id}`)) || '';
+        
+        modalImage.src = artwork.imagen;
+        modalImage.alt = artwork.titulo[currentLang];
+        modalTitle.textContent = artwork.titulo[currentLang];
+        modalDescription.textContent = artwork.descripcion[currentLang];
+        commentsInput.value = comments;
+        commentsInput.placeholder = translations[currentLang].commentsLabel;
+        modal.style.display = 'block';
+    };
+
+    // Navega a la obra anterior/siguiente en el modal
+    const navigateModal = (direction) => {
+        if (filteredArtworks.length <= 1) return;
+        
+        currentArtworkIndex += direction;
+        
+        if (currentArtworkIndex < 0) {
+            currentArtworkIndex = filteredArtworks.length - 1;
+        } else if (currentArtworkIndex >= filteredArtworks.length) {
+            currentArtworkIndex = 0;
+        }
+        
+        openModal(filteredArtworks[currentArtworkIndex]);
+    };
+    
+    // Event Listeners
+    languageSelect.addEventListener('change', (e) => {
+        currentLang = e.target.value;
+        localStorage.setItem('lang', currentLang);
+        translateUI(currentLang);
+        renderGallery(filteredArtworks);
     });
-    filtro.value = selected;
-  }
-}
 
-function cargarGaleria(obras) {
-  const galeria = document.getElementById('galeria');
-  galeria.innerHTML = '';
-  obras.forEach(obra => {
-    const div = document.createElement('div');
-    div.className = 'obra';
-    div.innerHTML = `
-      <img src="${obra.imagen}" alt="${obra.titulo[idiomaActual]}">
-      <div class="obra-info">
-        <h3>${obra.titulo[idiomaActual]}</h3>
-        <button class="favorite-btn ${favoritos.includes(obra.id) ? 'favorito' : ''}" data-id="${obra.id}">★</button>
-      </div>
-    `;
-    div.addEventListener('click', () => abrirModal(obra));
-    galeria.appendChild(div);
-  });
+    styleFilter.addEventListener('change', filterAndDisplayArtworks);
 
-  // Añadir eventos a los botones de favoritos
-  document.querySelectorAll('.favorite-btn').forEach(btn => {
-    btn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      const id = btn.dataset.id;
-      const index = favoritos.indexOf(id);
-      if (index === -1) {
-        favoritos.push(id);
-        btn.classList.add('favorito');
-      } else {
-        favoritos.splice(index, 1);
-        btn.classList.remove('favorito');
-      }
-      localStorage.setItem('favoritos', JSON.stringify(favoritos));
+    listenButton.addEventListener('click', () => {
+        const textToSpeak = `${translations[currentLang].title}. ${translations[currentLang].description}`;
+        const speech = new SpeechSynthesisUtterance(textToSpeak);
+        speech.lang = currentLang;
+        window.speechSynthesis.speak(speech);
     });
-  });
-}
 
-function abrirModal(obra) {
-  const modal = document.getElementById('modal');
-  const obrasList = obrasFiltradas;
-  obraActualIndex = obrasList.findIndex(o => o.id === obra.id);
-  actualizarModal(obra);
-  modal.style.display = 'block';
-}
+    closeButton.addEventListener('click', () => {
+        modal.style.display = 'none';
+    });
 
-function actualizarModal(obra) {
-  document.getElementById('modalImagen').src = obra.imagen;
-  document.getElementById('modalTitulo').textContent = obra.titulo[idiomaActual];
-  document.getElementById('modalDescripcion').textContent = obra.descripcion[idiomaActual];
-  document.getElementById('inputComentarios').value = comentariosGuardados[obra.id] || '';
-  document.getElementById('btnFavorito').dataset.id = obra.id;
-  document.getElementById('btnFavorito').classList.toggle('favorito', favoritos.includes(obra.id));
-}
+    window.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            modal.style.display = 'none';
+        }
+    });
 
-function cerrarModal() {
-  document.getElementById('modal').style.display = 'none';
-}
+    prevButton.addEventListener('click', () => navigateModal(-1));
+    nextButton.addEventListener('click', () => navigateModal(1));
 
-function cambiarObra(delta) {
-  const obrasList = obrasFiltradas;
-  obraActualIndex = (obraActualIndex + delta + obrasList.length) % obrasList.length;
-  actualizarModal(obrasList[obraActualIndex]);
-}
-
-function guardarComentario() {
-  const id = document.getElementById('btnFavorito').dataset.id;
-  const texto = document.getElementById('inputComentarios').value;
-  comentariosGuardados[id] = texto;
-  localStorage.setItem('comentarios', JSON.stringify(comentariosGuardados));
-}
-
-function aplicarFiltro() {
-  const filtro = document.getElementById('filtroEstilo').value;
-  obrasFiltradas = filtro === 'todos' ? obras : obras.filter(o => o.estilo === filtro);
-  cargarGaleria(obrasFiltradas);
-}
-
-function escucharTexto() {
-  const texto = traducir('descripcionPrincipal');
-  const utterance = new SpeechSynthesisUtterance(texto);
-  const voices = speechSynthesis.getVoices();
-  const langMap = { es: 'es-ES', en: 'en-US', fr: 'fr-FR', ja: 'ja-JP' };
-  const voice = voices.find(v => v.lang.startsWith(langMap[idiomaActual])) || null;
-  if (voice) utterance.voice = voice;
-  utterance.lang = langMap[idiomaActual] || 'es-ES';
-  speechSynthesis.speak(utterance);
-}
-
-// Eventos
-document.getElementById('selectorIdioma').addEventListener('change', (e) => {
-  idiomaActual = e.target.value;
-  localStorage.setItem('idioma', idiomaActual);
-  actualizarInterfaz();
-  aplicarFiltro();
-  if (document.getElementById('modal').style.display === 'block') {
-    const obrasList = obrasFiltradas;
-    actualizarModal(obrasList[obraActualIndex]);
-  }
+    saveCommentButton.addEventListener('click', () => {
+        if (commentsInput.value) {
+            const artworkId = filteredArtworks[currentArtworkIndex].id;
+            localStorage.setItem(`comments_${artworkId}`, JSON.stringify(commentsInput.value));
+            alert('Comentario guardado. ✅');
+        }
+    });
+    
+    // Inicia la carga de datos
+    fetchArtworks();
 });
-
-document.getElementById('filtroEstilo').addEventListener('change', aplicarFiltro);
-
-document.getElementById('btnEnviar').addEventListener('click', guardarComentario);
-
-document.querySelector('.close').addEventListener('click', cerrarModal);
-
-document.getElementById('btnFavorito').addEventListener('click', (e) => {
-  e.stopPropagation();
-  const id = e.target.dataset.id;
-  const btn = e.target;
-  if (favoritos.includes(id)) {
-    favoritos = favoritos.filter(f => f !== id);
-    btn.classList.remove('favorito');
-  } else {
-    favoritos.push(id);
-    btn.classList.add('favorito');
-  }
-  localStorage.setItem('favoritos', JSON.stringify(favoritos));
-});
-
-document.querySelector('.prev').addEventListener('click', () => cambiarObra(-1));
-document.querySelector('.next').addEventListener('click', () => cambiarObra(1));
-
-document.getElementById('btnEscuchar').addEventListener('click', escucharTexto);
-
-// Inicialización
-window.addEventListener('load', () => {
-  speechSynthesis.getVoices(); // precargar voces
-  actualizarInterfaz();
-  aplicarFiltro();
-});
-
-window.onclick = function(event) {
-  const modal = document.getElementById('modal');
-  if (event.target === modal) {
-    cerrarModal();
-  }
-};
