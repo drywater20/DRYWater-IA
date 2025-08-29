@@ -3,39 +3,22 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Drywater Art | Galería de Arte Marino Digital</title>
-  <meta name="description" content="Colección exclusiva de arte marino generado por inteligencia artificial.">
-  <meta name="keywords" content="arte marino, arte digital, IA arte, arte oceánico, arte abstracto">
-  <meta name="author" content="Drywater Studio">
-  
-  <!-- Open Graph para redes sociales -->
-  <meta property="og:title" content="Drywater Art - Arte Marino por IA">
-  <meta property="og:description" content="Colección de arte marino digital generada por inteligencia artificial.">
-  <meta property="og:image" content="https://drywater-ia.netlify.app/imagenes/og-image.jpg">
-  <meta property="og:url" content="https://drywater-ia.netlify.app/">
-  <meta property="og:type" content="website">
-
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Open+Sans&display=swap" rel="stylesheet">
-
-  <link rel="stylesheet" href="style.css">
+  <title>Galería de Arte</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
-
 <body>
   <header>
-    <h1 id="main-title">Galería de Arte</h1>
-    <p id="main-subtitle">Disfruta de una colección única de arte marino.</p>
+    <h1 id="tituloPrincipal">Galería de Arte Marítimo</h1>
+    <p id="descripcionPrincipal">Descubre el arte inspirado en el océano.</p>
+    <button id="btnEscuchar">🔊 Escuchar</button>
   </header>
 
-  <!-- Botón de escuchar todo -->
-  <div style="text-align: center; margin: 10px 0;">
-    <button id="speak-all">Escuchar</button>
-  </div>
+  <div class="controls">
+    <label for="filtroEstilo" id="labelFiltro">Filtrar por estilo:</label>
+    <select id="filtroEstilo"></select>
 
-  <!-- Selector de idioma -->
-  <div class="language-selector">
-    <label id="lang-label">Idioma:</label>
-    <select id="lang-select">
+    <label for="selectorIdioma" id="labelIdioma">Idioma:</label>
+    <select id="selectorIdioma">
       <option value="es">Español</option>
       <option value="en">English</option>
       <option value="fr">Français</option>
@@ -43,62 +26,27 @@
     </select>
   </div>
 
-  <!-- Filtros -->
-  <div class="filters">
-    <label id="filter-label">Filtrar por estilo:</label>
-    <select id="style-filter">
-      <option value="all" id="option-all">todos</option>
-      <option value="peces" id="option-peces">peces</option>
-      <option value="calamares" id="option-calamares">calamares</option>
-      <option value="varios" id="option-varios">varios</option>
-      <option value="otros" id="option-otros">otros</option>
-    </select>
-  </div>
+  <main id="galeria" class="galeria"></main>
 
-  <!-- Texto introductorio -->
-  <section id="intro-text">
-    <p id="intro-paragraph">
-      Texto introducción.
-      
-    </p>
-  </section>
-
-  <!-- Galería -->
-  <main id="gallery">
-    <!-- Obras dinámicas -->
-  </main>
-
-  <!-- Lightbox -->
-  <div id="lightbox" class="lightbox">
-    <span class="close-btn" onclick="closeLightbox()">&times;</span>
-    <span class="nav-btn prev" onclick="changeImage(-1)">&#10094;</span>
-    <div class="lightbox-content-wrapper">
-      <img id="lightbox-img" class="lightbox-content">
-      <div class="lightbox-info">
-        <h3 id="lightbox-title">Título</h3>
-        <p id="lightbox-desc">Descripción</p>
+  <div id="modal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <button class="nav-btn prev"><</button>
+      <div class="modal-body">
+        <img id="modalImagen" src="" alt="" />
+        <h2 id="modalTitulo"></h2>
+        <p id="modalDescripcion"></p>
+        <div class="comentarios">
+          <h3 id="labelComentarios">Comentarios</h3>
+          <textarea id="inputComentarios" rows="3"></textarea>
+          <button id="btnEnviar">Enviar</button>
+        </div>
+        <button id="btnFavorito" class="favorite-btn">★</button>
       </div>
+      <button class="nav-btn next">></button>
     </div>
-    <span class="nav-btn next" onclick="changeImage(1)">&#10095;</span>
   </div>
 
-  <!-- Comentarios -->
-  <section class="comments-section">
-    <form action="https://formspree.io/f/xzzvngag" method="POST" style="text-align: center;">
-      <input type="hidden" name="form-name" value="comentarios" />
-      <h2 id="comment-title">Comentarios:</h2>
-      <textarea name="comment" id="comment" placeholder="Escribe tu comentario aquí..." required></textarea>
-      <button type="submit" id="send-btn">Enviar</button>
-    </form>
-  </section>
-
-  <!-- Footer -->
-  <footer>
-    <p>© 2025 Drywater Studio. Todos los derechos reservados.</p>
-    <p>Arte generado por IA</p>
-  </footer>
-
-  <!-- Scripts -->
-  <script src="script.js"></script>
+  <script src="script.js" type="module"></script>
 </body>
 </html>
