@@ -48,7 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
         fr: {
             title: "Galerie d'Art Web",
             description: "Découvrez une collection d'art numérique. 🐟🦑",
-            filterLabel: "Filtrer par style:",
+            filterLabel: "Filtrer por style:",
             allStyles: "tous",
             commentsLabel: "Commentaires:",
             sendButton: "Envoyer",
@@ -277,7 +277,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Nuevo: Listeners para leer título y descripción en el modal
+    // Añade listeners para leer título y descripción en el modal
     modalTitle.addEventListener('click', () => {
         readText(modalTitle.textContent);
     });
